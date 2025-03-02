@@ -1,0 +1,4 @@
+platform: version
+name: "${device_name} Version"
+hide_timestamp: True
+icon: "mdi:script-text-play"
