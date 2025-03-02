@@ -35,9 +35,9 @@ web_server:
   version: 3
 
 text_sensor:
-  - <<: !include common/text_sensor/ip_address.yaml
-  - <<: !include common/text_sensor/location.yaml    
-  - <<: !include common/text_sensor/version.yaml
+  - <<: ip_address.yaml
+  - <<: location.yaml    
+  - <<: version.yaml
 
 binary_sensor:
   - <<: !include common/binary_sensor/status.yaml
