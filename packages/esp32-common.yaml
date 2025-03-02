@@ -35,15 +35,15 @@ web_server:
   version: 3
 
 text_sensor:
-  - <<: ip_address.yaml
-  - <<: location.yaml    
-  - <<: version.yaml
+  - <<: !include ip_address.yaml
+  - <<: !include location.yaml    
+  - <<: !include version.yaml
 
 binary_sensor:
-  - <<: !include common/binary_sensor/status.yaml
+  - <<: !include status.yaml
 
 sensor:
-  - <<: !include common/sensor/wifi_signal.yaml
+  - <<: !include wifi_signal.yaml
 
 switch:
   - platform: restart
