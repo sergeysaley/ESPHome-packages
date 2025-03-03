@@ -3,11 +3,6 @@ esphome:
   comment: ${device_location}
   name_add_mac_suffix: false
 
-esp32:
-  board: esp32dev
-  framework:
-    type: arduino
-
 # Enable logging
 logger:
 
