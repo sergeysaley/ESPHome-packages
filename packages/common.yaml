@@ -14,6 +14,13 @@ logger:
 #  ap:
 #    ssid: ${device_name}
 #    password: !secret ap_password
+wifi:
+  networks:
+    - ssid: !secret wifi_ssid
+      password: !secret wifi_password
+  ap:
+    ssid: ${device_name}
+    password: !secret ap_password
 
 captive_portal:
 
