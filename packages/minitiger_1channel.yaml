@@ -24,7 +24,7 @@ light:
     output: relay_1    
   - platform: monochromatic
     name: "${device_name} LED"
-    disabled_by_default: true
+#    disabled_by_default: true
     id: led
     output: blue_led
     default_transition_length: 500ms
