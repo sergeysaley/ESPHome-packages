@@ -1,7 +1,5 @@
 
 esphome:
-  name: ${device_name}
-  comment: ${device_location}
   on_boot:
     then:
       - light.turn_on: 
