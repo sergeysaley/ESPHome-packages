@@ -34,7 +34,7 @@ light:
           alpha: 70%
           intensity: 25%
 
-status_led:
-  pin:
-    number: GPIO13
-    inverted: no
+#status_led:
+#  pin:
+#    number: GPIO13
+#    inverted: no
