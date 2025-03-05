@@ -1,0 +1,27 @@
+binary_sensor:
+  - platform: gpio
+    pin:
+      number: GPIO0
+      mode: INPUT_PULLUP
+    id: button_1
+    on_press:
+      then:
+        - light.toggle: light_1
+
+light:
+  - platform: binary
+    name: "${device_name} Light_1"
+    id: light_1
+    output: relay_1
+  - platform: monochromatic
+    name: "${device_name} BlueLight"
+    output: blue_led 
+
+output:
+  - platform: gpio
+    pin: GPIO12
+    id: relay_1
+  - platform: esp8266_pwm
+    pin: GPIO13
+    inverted: True
+    id: blue_led
