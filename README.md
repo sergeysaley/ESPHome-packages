@@ -13,6 +13,8 @@ packages:
     ref: main
     refresh: 0s
 ```
-Specific values written inn main file overrides package values
+Specific values written in main file overrides package values
 
 Substitutions from main file work in packages files
+
+https://esphome.io/components/packages.html
