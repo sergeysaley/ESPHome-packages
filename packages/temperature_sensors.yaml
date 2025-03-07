@@ -1,0 +1,21 @@
+one_wire:
+  - platform: gpio
+    pin: GPIO5
+sensor:    
+  - platform: dallas_temp
+    address: 0x573c01f095785028
+    name: "${device_name} temp 1"
+    update_interval: 15s
+  - platform: dallas_temp
+    address: 0x4e3c01f09592ca28
+    name: "${device_name} temp 2"
+    update_interval: 15s
+  - platform: dallas_temp
+    address: 0x0f3c01f0954f1b28
+    name: "${device_name} temp 3"
+    update_interval: 15s
+  - platform: dallas_temp
+    address: 0xdd3c01f09500f728
+    name: "${device_name} temp 4"
+    update_interval: 15s
+
