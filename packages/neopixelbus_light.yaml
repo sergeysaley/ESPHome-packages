@@ -1,0 +1,15 @@
+light:
+  - platform: neopixelbus
+    type: GRB
+    variant: WS2812
+    pin: D2
+    num_leds: 24
+    name: "${device_name} light_1"
+    restore_mode: ALWAYS_OFF
+    default_transition_length: 1s
+    id: strip12
+    effects:
+      - pulse:
+      - flicker: 
+          alpha: 10%
+          intensity: 5%
