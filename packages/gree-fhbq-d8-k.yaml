@@ -1,0 +1,76 @@
+switch:
+  - platform: template
+    name: "Gree state"
+    icon: "mdi:power"
+    lambda: |-
+      if (id(state).state == "On") {
+        return true;
+      } else {
+        return false;
+      }
+    turn_on_action:
+      - select.set: 
+          id: state
+          option: "On"
+    turn_off_action:
+      - select.set: 
+          id: state
+          option: "Off"
+      
+uart:
+  id: mod_bus
+  tx_pin: ${gree_tx_pin}
+  rx_pin: ${gree_rx_pin}
+  baud_rate: 9600
+  stop_bits: 1
+  data_bits: 8
+
+modbus:
+  id: modbus_gree
+  uart_id: mod_bus
+  send_wait_time: 200ms
+
+modbus_controller:
+  - id: gree
+    modbus_id: modbus_gree
+    address: 0x2
+    setup_priority: -10
+    update_interval: 3s
+
+select:
+  - platform: modbus_controller
+    modbus_controller_id: gree
+    id: state
+#    name: "Gree state select"
+    address: 4
+    value_type: U_WORD
+    icon: "mdi:power"
+    optionsmap:
+      "On": 0xAA
+      "Off": 0x55
+    use_write_multiple: true
+    internal: True
+  - platform: modbus_controller
+    modbus_controller_id: gree
+    id: fan
+    name: "Gree fan speed"
+    address: 8
+    value_type: U_WORD
+    icon: "mdi:fan"
+    optionsmap:
+      "Low": 0
+      "Medium": 1
+      "High": 2
+    use_write_multiple: true
+  - platform: modbus_controller
+    modbus_controller_id: gree
+    name: "Gree mode"
+    address: 5
+    value_type: U_WORD
+    icon: "mdi:hvac"
+    optionsmap:
+      "Auto": 0
+      "Bypass": 1
+      "Heat Exchange": 2
+    use_write_multiple: true
+  
