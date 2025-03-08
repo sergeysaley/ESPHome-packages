@@ -12,7 +12,6 @@ sensor:
   - platform: vl53l1x_sensor
     name: ${device_name} distance    
     distance_mode: LONG
-    timing_budget: 500ms
     signal_threshold: 1024
     update_interval: 15s
     accuracy_decimals: 3
