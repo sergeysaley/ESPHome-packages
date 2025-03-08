@@ -11,13 +11,14 @@ i2c:
 sensor:
   - platform: vl53l1x_sensor
     name: ${device_name} distance    
-    distance_mode: MEDIUM
+    distance_mode: HIGH
+    timing_budget: 500ms
     update_interval: 15s
     accuracy_decimals: 3
     roi_center: 199
     roi_size:
-      x: 10
-      y: 10
+      x: 16
+      y: 16
     ambient_rate_sensor: 
       name: "Ambient Rate [MCPS]"
     avg_signal_rate_sensor: 
