@@ -1,0 +1,118 @@
+uart:
+  - id: pzem_uart
+    tx_pin: ${tx_pin}
+    rx_pin: ${rx_pin}
+    baud_rate: 9600
+    rx_buffer_size: 384
+  
+modbus:
+  - id: pzem_modbus
+    uart_id: pzem_uart
+
+sensor:
+  - platform: pzemac
+    address: 2
+    id: phaze_a
+    modbus_id: pzem_modbus
+    current:
+      name: "PZEM-004T V3 Current A"
+      unit_of_measurement: A
+    voltage:
+      name: "PZEM-004T V3 Voltage A"
+      unit_of_measurement: V
+    energy:
+      name: "PZEM-004T V3 Energy A"
+      id: energy_A
+      unit_of_measurement: Wh
+    power:
+      name: "PZEM-004T V3 Power A"
+      id: power_A
+      unit_of_measurement: W
+    frequency:
+      name: "PZEM-004T V3 Frequency A"
+    power_factor:
+      name: "PZEM-004T V3 Power Factor A"
+    update_interval: never
+  - platform: pzemac
+    address: 3
+    id: phaze_b
+    modbus_id: pzem_modbus
+    current:
+      name: "PZEM-004T V3 Current B"
+      unit_of_measurement: A
+    voltage:
+      name: "PZEM-004T V3 Voltage B"
+      unit_of_measurement: V
+    energy:
+      name: "PZEM-004T V3 Energy B"
+      id: energy_B
+      unit_of_measurement: Wh
+    power:
+      name: "PZEM-004T V3 Power B"
+      id: power_B
+      unit_of_measurement: W
+    frequency:
+      name: "PZEM-004T V3 Frequency B"
+    power_factor:
+      name: "PZEM-004T V3 Power Factor B"
+    update_interval: never
+  - platform: pzemac
+    address: 4
+    id: phaze_c
+    modbus_id: pzem_modbus
+    current:
+      name: "PZEM-004T V3 Current C"
+      unit_of_measurement: A
+    voltage:
+      name: "PZEM-004T V3 Voltage C"
+      unit_of_measurement: V
+    energy:
+      name: "PZEM-004T V3 Energy C"
+      id: energy_C
+      unit_of_measurement: Wh
+    power:
+      name: "PZEM-004T V3 Power C"
+      id: power_C
+      unit_of_measurement: W
+    frequency:
+      name: "PZEM-004T V3 Frequency C"
+    power_factor:
+      name: "PZEM-004T V3 Power Factor C"
+    update_interval: never
+  - platform: template
+    name: "Consumption ABC"
+    unit_of_measurement: "kWh"
+    accuracy_decimals: 1
+    update_interval: 30s
+    icon: mdi:power
+    lambda: return ( (id(energy_A).state+id(energy_B).state+id(energy_C).state)/1000.0 );
+
+button:
+  - platform: template
+    name: "Phaze A Reset"
+    on_press:
+      - pzemac.reset_energy: phaze_a
+  - platform: template
+    name: "Phaze B Reset"
+    on_press:
+      - pzemac.reset_energy: phaze_b
+  - platform: template
+    name: "Phaze C Reset"
+    on_press:
+      - pzemac.reset_energy: phaze_c
+
+interval:
+  - interval: 15s
+    then:
+      - delay: 500ms
+      - lambda: "id(phaze_a).update();"
+      - delay: 500ms
+      - lambda: "id(phaze_b).update();"
+      - delay: 500ms
+      - lambda: "id(phaze_c).update();"
+
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+
