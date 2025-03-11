@@ -17,8 +17,8 @@ sensor:
     accuracy_decimals: 3
     roi_center: 199
     roi_size:
-      x: 11
-      y: 11
+      x: 12
+      y: 12
     ambient_rate_sensor: 
       name: "Ambient Rate [MCPS]"
     avg_signal_rate_sensor: 
