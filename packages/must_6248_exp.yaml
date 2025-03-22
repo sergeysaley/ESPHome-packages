@@ -39,6 +39,12 @@ wifi:
 
 switch:
   - platform: template
+    name: "Use customer limits for battery discharge"
+    id: limits_enabled
+    optimistic: True
+    restore_mode: RESTORE_DEFAULT_OFF
+
+  - platform: template
     name: "SysSet[07]: Overload Restart Forbid"
     lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,0)) { return true; } else { return false; }
     turn_on_action:
@@ -374,7 +380,7 @@ sensor:
     on_value:
       - if:
           condition:
-            lambda: return (x<id(discharge_margin).state);
+            lambda: return (x<id(discharge_margin).state and id(limit_enabled).state);
           then:
             - select.set_index:
                 id: energy_use_mode
@@ -382,7 +388,7 @@ sensor:
           else:
             if:
               condition: 
-                lambda: return (x>id(discharge_margin).state+10);
+                lambda: return (x>id(discharge_margin).state+10 and id(limit_enabled).state);
               then:
                 - select.set_index:
                     id: energy_use_mode
