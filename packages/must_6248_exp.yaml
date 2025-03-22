@@ -48,6 +48,7 @@ switch:
     name: "SysSet[07]: Overload Restart Forbid"
 #    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,0)) { return true; } else { return false; }
     restore_mode: RESTORE_DEFAULT_OFF
+    optimistic: true
     turn_on_action:
        - number.set:
           id: system_settings
