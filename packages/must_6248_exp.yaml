@@ -46,7 +46,7 @@ switch:
 
   - platform: template
     name: "SysSet[07]: Overload Restart Forbid"
-    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,0)) { return true; } else { return false; }
+#    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,0)) { return true; } else { return false; }
     restore_mode: RESTORE_DEFAULT_OFF
     turn_on_action:
        - number.set:
@@ -59,7 +59,7 @@ switch:
 
   - platform: template
     name: "SysSet[08]: Overtemp Restart Forbid"
-    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,1)) { return true; } else { return false; }
+#    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,1)) { return true; } else { return false; }
     restore_mode: RESTORE_DEFAULT_OFF
     turn_on_action:
        - number.set:
@@ -72,7 +72,7 @@ switch:
 
   - platform: template    
     name: "SysSet[06]: Overload Bypass Forbid"
-    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,2)) { return true; } else { return false; }
+#    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,2)) { return true; } else { return false; }
     restore_mode: RESTORE_DEFAULT_OFF
     turn_on_action:
        - number.set:
@@ -85,7 +85,7 @@ switch:
 
   - platform: template
     name: "SysSet[22]: Forbid Page turn"
-    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,3)) { return true; } else { return false; }
+#    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,3)) { return true; } else { return false; }
     restore_mode: RESTORE_DEFAULT_OFF
     turn_on_action:
        - number.set:
@@ -98,7 +98,7 @@ switch:
 
   - platform: template
     name: "SysSet: Grid Buzz Enable"
-    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,4)) { return true; } else { return false; }
+#    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,4)) { return true; } else { return false; }
     restore_mode: RESTORE_DEFAULT_OFF
     turn_on_action:
        - number.set:
@@ -111,7 +111,7 @@ switch:
 
   - platform: template
     name: "SysSet: Buzz Forbid"
-    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,5)) { return true; } else { return false; }
+#    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,5)) { return true; } else { return false; }
     restore_mode: RESTORE_DEFAULT_OFF
     turn_on_action:
        - number.set:
@@ -124,7 +124,7 @@ switch:
 
   - platform: template
     name: "SysSet[23]: LCD light"
-    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,6)) { return true; } else { return false; }
+#    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,6)) { return true; } else { return false; }
     restore_mode: RESTORE_DEFAULT_OFF
     turn_on_action:
        - number.set:
@@ -137,7 +137,7 @@ switch:
 
   - platform: template
     name: "SysSet[27]: Record Fault Forbid"
-    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,7)) { return true; } else { return false; }
+#    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,7)) { return true; } else { return false; }
     restore_mode: RESTORE_DEFAULT_OFF
     turn_on_action:
        - number.set:
