@@ -987,4 +987,4 @@ number:
     address: 20142
     value_type: U_WORD
     internal: True
-    use_write_multiple: true
+#    use_write_multiple: true
