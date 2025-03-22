@@ -380,7 +380,7 @@ sensor:
     on_value:
       - if:
           condition:
-            lambda: return (x<id(discharge_margin).state and id(limit_enabled).state);
+            lambda: return (x<id(discharge_margin).state and id(limits_enabled).state);
           then:
             - select.set_index:
                 id: energy_use_mode
@@ -388,7 +388,7 @@ sensor:
           else:
             if:
               condition: 
-                lambda: return (x>id(discharge_margin).state+10 and id(limit_enabled).state);
+                lambda: return (x>id(discharge_margin).state+10 and id(limits_enabled).state);
               then:
                 - select.set_index:
                     id: energy_use_mode
