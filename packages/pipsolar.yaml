@@ -55,18 +55,18 @@ sensor:
 #      name: "${name} current_max_charging_current"
 #    input_voltage_range:
 #      name: "${name} input_voltage_range"
-    output_source_priority:
-      name: "${name} output_source_priority"
-    charger_source_priority:
-      name: "${name} charger_source_priority"
+#    output_source_priority:
+#      name: "${name} output_source_priority"
+#    charger_source_priority:
+#      name: "${name} charger_source_priority"
 #    parallel_max_num:
 #      name: "${name} parallel_max_num"
 #    machine_type:
 #      name: "${name} machine_type"
 #    topology:
 #      name: "${name} topology"
-#    output_mode:
-#      name: "${name} output_mode"
+    output_mode:
+      name: "${name} output_mode"
 #    battery_redischarge_voltage:
 #      name: "${name} battery_redischarge_voltage"
 #    pv_ok_condition_for_parallel:
