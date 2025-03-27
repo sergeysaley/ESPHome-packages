@@ -51,7 +51,7 @@ switch:
     turn_on_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -59,7 +59,7 @@ switch:
     turn_off_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -70,7 +70,7 @@ switch:
     turn_on_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -78,7 +78,7 @@ switch:
     turn_off_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -90,7 +90,7 @@ switch:
      turn_on_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -98,7 +98,7 @@ switch:
     turn_off_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -110,7 +110,7 @@ switch:
     turn_on_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -118,7 +118,7 @@ switch:
     turn_off_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -130,7 +130,7 @@ switch:
     turn_on_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -138,7 +138,7 @@ switch:
     turn_off_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -150,7 +150,7 @@ switch:
     turn_on_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -158,7 +158,7 @@ switch:
     turn_off_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -170,7 +170,7 @@ switch:
     turn_on_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -178,7 +178,7 @@ switch:
     turn_off_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -190,7 +190,7 @@ switch:
     turn_on_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
@@ -198,7 +198,7 @@ switch:
     turn_off_action:
       - if:
           condition:
-            lambda: 'if(id(uptime_sensor).state>15) {  return true; } else { return false; }'
+            lambda: 'if(id(uptime_sensor).state>25) {  return true; } else { return false; }'
           then:
             - number.set:
                 id: system_settings
