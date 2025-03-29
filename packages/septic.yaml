@@ -13,6 +13,7 @@ sensor:
     name: ${device_name} distance    
     distance_mode: MEDIUM
     signal_threshold: 512
+    timing_budget: 200ms
     update_interval: 15s
     accuracy_decimals: 3
     roi_center: 199
