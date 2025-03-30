@@ -95,8 +95,8 @@ sensor:
       name: "${name} battery_capacity_percent"
     inverter_heat_sink_temperature:
       name: "${name} inverter_heat_sink_temperature"
-    pv_input_current:
-      name: "${name} pv_input_current"
+    pv_input_current_for_battery:
+      name: "${name} pv_input_current_for_battery"
     pv_input_voltage:
       name: "${name} pv_input_voltage"
     battery_voltage_scc:
