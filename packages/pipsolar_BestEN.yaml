@@ -95,9 +95,9 @@ sensor:
       name: "${name} battery_capacity_percent"
     inverter_heat_sink_temperature:
       name: "${name} inverter_heat_sink_temperature"
-    pv1_input_current:
+    pv_input_current:
       name: "${name} pv_input_current"
-    pv1_input_voltage:
+    pv_input_voltage:
       name: "${name} pv_input_voltage"
     battery_voltage_scc:
       name: "${name} battery_voltage_scc"
@@ -107,8 +107,8 @@ sensor:
       name: "${name} battery_voltage_offset_for_fans_on"
 #    eeprom_version:
 #      name: "${name} eeprom_version"
-    pv1_charging_power:
-      name: "${name} pv1_charging_power"
+    pv_charging_power:
+      name: "${name} pv_charging_power"
 
 text_sensor:
   - platform: pipsolar
