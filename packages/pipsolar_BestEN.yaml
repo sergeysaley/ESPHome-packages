@@ -172,7 +172,7 @@ binary_sensor:
 
 switch:
   - platform: pipsolar
-   pipsolar_id: inverter0
+    pipsolar_id: inverter0
     output_source_priority_utility:
       name: "${name} output_source_priority_utility"
     output_source_priority_solar:
