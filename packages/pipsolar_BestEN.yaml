@@ -1,7 +1,7 @@
 
-external_components:
-  - source: github://syssi/esphome-pipsolar@pip8048
-    refresh: 0s
+#external_components:
+#  - source: github://syssi/esphome-pipsolar@pip8048
+#    refresh: 0s
     
 uart:
   id: uart_0
@@ -175,15 +175,15 @@ binary_sensor:
 #    backlight_on:
 #      name: "${name} backlight_on"
 
-#switch:
-#  - platform: pipsolar
-#   pipsolar_id: inverter0
-#    output_source_priority_utility:
-#      name: "${name} output_source_priority_utility"
-#    output_source_priority_solar:
-#      name: "${name} output_source_priority_solar"
-#    output_source_priority_battery:
-#      name: "${name} output_source_priority_battery"
+switch:
+  - platform: pipsolar
+   pipsolar_id: inverter0
+    output_source_priority_utility:
+      name: "${name} output_source_priority_utility"
+    output_source_priority_solar:
+      name: "${name} output_source_priority_solar"
+    output_source_priority_battery:
+      name: "${name} output_source_priority_battery"
 #    input_voltage_range:
 #      name: "${name} input_voltage_range"
 #    pv_ok_condition_for_parallel:
@@ -197,33 +197,33 @@ output:
     battery_recharge_voltage:
       id: inverter0_battery_recharge_voltage_out
 
-select:
-  - platform: pipsolar
-    pipsolar_id: inverter0
-    charger_source_priority:
-      id: charger_source_priority_select
-      name: Charger Source Priority Select
-      optionsmap:
-#        "Utility first": "PCP00"
-        "Solar first": "PCP01"
-        "Solar and utility": "PCP02"
-        "Solar charging only": "PCP03"
-      statusmap:
-#        "0": "Utility first"
-        "1": "Solar first"
-        "2": "Solar and utility"
-        "3": "Solar charging only"
+#select:
+#  - platform: pipsolar
+#    pipsolar_id: inverter0
+#    charger_source_priority:
+#      id: charger_source_priority_select
+#      name: Charger Source Priority Select
+#      optionsmap:
+##        "Utility first": "PCP00"
+#        "Solar first": "PCP01"
+#        "Solar and utility": "PCP02"
+#        "Solar charging only": "PCP03"
+#      statusmap:
+##        "0": "Utility first"
+#        "1": "Solar first"
+#        "2": "Solar and utility"
+#        "3": "Solar charging only"
 
-  - platform: pipsolar
-    pipsolar_id: inverter0
-    output_source_priority:
-      id: output_source_priority_select
-      name: Output Source Priority Select
-      optionsmap:
-        "Utility first": "POP00"
-        "Solar only": "POP01"
-        "Solar Battery Utility": "POP02"
-      statusmap:
-        "0": "Utility first"
-        "1": "Solar only"
-        "2": "Solar Battery Utility"
+#  - platform: pipsolar
+#    pipsolar_id: inverter0
+#    output_source_priority:
+#      id: output_source_priority_select
+#      name: Output Source Priority Select
+#      optionsmap:
+#        "Utility first": "POP00"
+#        "Solar only": "POP01"
+#        "Solar Battery Utility": "POP02"
+#      statusmap:
+#        "0": "Utility first"
+#        "1": "Solar only"
+#        "2": "Solar Battery Utility"
