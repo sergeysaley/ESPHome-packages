@@ -47,6 +47,7 @@ switch:
 
   - platform: template
     name: "SysSet[07]: Overload Restart Forbid"
+    id: overload_restart_forbid
 #    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,0)) { return true; } else { return false; }
     optimistic: True
     restore_mode: RESTORE_DEFAULT_OFF
@@ -61,6 +62,7 @@ switch:
 
   - platform: template
     name: "SysSet[08]: Overtemp Restart Forbid"
+    id: overtemp_restart_forbid
 #    lambda: uint16_t settings = id(system_settings).state; if (bitRead(settings,1)) { return true; } else { return false; }
     optimistic: True
     restore_mode: RESTORE_DEFAULT_OFF
