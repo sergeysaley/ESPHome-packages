@@ -45,9 +45,7 @@ switch:
     optimistic: True
     restore_mode: RESTORE_DEFAULT_OFF
 
-
 sensor:
-
   - platform: uptime
     type: seconds
     name: Uptime Sensor
