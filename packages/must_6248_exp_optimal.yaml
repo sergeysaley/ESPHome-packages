@@ -665,5 +665,5 @@ number:
 #    name: "System Settings"
     address: 20142
     value_type: U_WORD
-    internal: True
+#    internal: True
 #    use_write_multiple: true
