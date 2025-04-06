@@ -662,7 +662,7 @@ number:
 
   - platform: modbus_controller
     id: system_settings
-#    name: "System Settings"
+    name: "System Settings"
     address: 20142
     value_type: U_WORD
 #    internal: True
