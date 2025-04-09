@@ -395,6 +395,12 @@ sensor:
                     index: 0  # SBU
 
   - platform: modbus_controller
+    address: 114
+    name: "State of Health"
+    unit_of_measurement: "%"
+    register_type: holding
+
+  - platform: modbus_controller
     address: 15201
     name: "Charger workstate"
     register_type: holding
