@@ -1,5 +1,7 @@
 # ESPHome-packages
 
+ESPHome packages used in my home automation devices
+
 ## Usage example:
 
 ```
