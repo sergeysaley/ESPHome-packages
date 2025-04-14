@@ -11,6 +11,15 @@ modbus:
 
 sensor:
   - platform: pzemac
+    address: 5
+    id: microwave
+    modbus_id: pzem_modbus
+    power:
+      name: "PZEM-004T V3 Power Microwave Oven"
+      unit_of_measurement: W
+    update_interval: never
+
+  - platform: pzemac
     address: 8
     id: phaze_a
     modbus_id: pzem_modbus
@@ -104,6 +113,8 @@ button:
 interval:
   - interval: 15s
     then:
+      - delay: 500ms
+      - lambda: "id(microwave).update();"
       - delay: 500ms
       - lambda: "id(phaze_a).update();"
       - delay: 500ms
