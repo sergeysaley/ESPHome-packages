@@ -17,8 +17,10 @@ sensor:
     power:
       name: "PZEM-004T V3 Power Microwave Oven"
       unit_of_measurement: W
+    energy:
+      name: "PZEM-004T V3 Energy Microwave Oven"
+      unit_of_measurement: Wh
     update_interval: never
-
   - platform: pzemac
     address: 8
     id: phaze_a
