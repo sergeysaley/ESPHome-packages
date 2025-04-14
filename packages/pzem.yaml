@@ -129,6 +129,8 @@ interval:
       - delay: 500ms
       - lambda: "id(microwave).update();"
       - delay: 500ms
+      - lambda: "id(washing_machine).update();"
+      - delay: 500ms
       - lambda: "id(phaze_a).update();"
       - delay: 500ms
       - lambda: "id(phaze_b).update();"
