@@ -33,6 +33,17 @@ sensor:
       unit_of_measurement: Wh
     update_interval: never
   - platform: pzemac
+    address: 7
+    id: electric_stove
+    modbus_id: pzem_modbus
+    power:
+      name: "PZEM-004T V3 Power Electric stove"
+      unit_of_measurement: W
+    energy:
+      name: "PZEM-004T V3 Energy Electric stove"
+      unit_of_measurement: Wh
+    update_interval: never
+  - platform: pzemac
     address: 8
     id: phaze_a
     modbus_id: pzem_modbus
@@ -130,6 +141,8 @@ interval:
       - lambda: "id(microwave).update();"
       - delay: 500ms
       - lambda: "id(washing_machine).update();"
+      - delay: 500ms
+      - lambda: "id(electric_stove).update();"
       - delay: 500ms
       - lambda: "id(phaze_a).update();"
       - delay: 500ms
