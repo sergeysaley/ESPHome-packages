@@ -22,6 +22,17 @@ sensor:
       unit_of_measurement: Wh
     update_interval: never
   - platform: pzemac
+    address: 6
+    id: washing_machine
+    modbus_id: pzem_modbus
+    power:
+      name: "PZEM-004T V3 Power Washing machine"
+      unit_of_measurement: W
+    energy:
+      name: "PZEM-004T V3 Energy Washing machine"
+      unit_of_measurement: Wh
+    update_interval: never
+  - platform: pzemac
     address: 8
     id: phaze_a
     modbus_id: pzem_modbus
