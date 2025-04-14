@@ -11,7 +11,7 @@ modbus:
 
 sensor:
   - platform: pzemac
-    address: 2
+    address: 8
     id: phaze_a
     modbus_id: pzem_modbus
     current:
@@ -34,7 +34,7 @@ sensor:
       name: "PZEM-004T V3 Power Factor A"
     update_interval: never
   - platform: pzemac
-    address: 3
+    address: 9
     id: phaze_b
     modbus_id: pzem_modbus
     current:
@@ -57,7 +57,7 @@ sensor:
       name: "PZEM-004T V3 Power Factor B"
     update_interval: never
   - platform: pzemac
-    address: 4
+    address: 10
     id: phaze_c
     modbus_id: pzem_modbus
     current:
