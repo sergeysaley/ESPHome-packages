@@ -36,6 +36,7 @@ modbus_controller:
     on_command_sent:
       then:
         - light.turn_on: indicator 
+        - delay: 0.1s
         - light.turn_off: indicator 
         
 wifi:
