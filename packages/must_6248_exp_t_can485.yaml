@@ -1,3 +1,35 @@
+esphome:
+  min_version: 2024.11.0
+  name_add_mac_suffix: false
+  on_boot: 
+    - priority: 600
+      then: 
+      - output.turn_on: pin16_high
+      - output.turn_on: pin17_high
+      - output.turn_on: pin19_high
+
+output:
+  - platform: gpio
+    pin: 16
+    id: pin16_high
+    
+  - platform: gpio
+    pin: 17
+    id: pin17_high
+    
+  - platform: gpio
+    pin: 19
+    id: pin19_high     
+
+light:
+  - platform: neopixelbus
+    type: GRB
+    variant: WS2812
+    pin: GPIO4
+    num_leds: 1
+    restore_mode: ALWAYS_OFF
+    id: indicator
+    internal: True
 
 
 time:
