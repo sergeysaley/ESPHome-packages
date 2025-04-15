@@ -38,7 +38,8 @@ modbus_controller:
 #        - light.turn_off: indicator 
     on_command_sent:
       then:
-        - light.turn_on: indicator 
+        - light.turn_on: indicator
+            flash_length: 0.1s
        
 wifi:
   networks:
