@@ -41,6 +41,10 @@ modbus_controller:
         - light.turn_on: 
             id: indicator
             flash_length: 0.1s
+            brightness: 10%
+            red: 1%
+            green: 1%
+            blue: 100%
        
 wifi:
   networks:
