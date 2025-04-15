@@ -30,9 +30,11 @@ modbus_controller:
     modbus_id: mod_bus_must
     setup_priority: -10
     update_interval: never
-    on_command_sent:
+    on_online:
       then:
         - light.turn_on: indicator 
+    on_offline:
+      then:
         - light.turn_off: indicator 
         
 wifi:
