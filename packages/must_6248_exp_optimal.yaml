@@ -36,7 +36,7 @@ modbus_controller:
 #    on_offline:
 #      then:
 #        - light.turn_off: indicator 
-     on_command_sent:
+    on_command_sent:
       then:
         - light.turn_on: indicator 
        
