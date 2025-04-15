@@ -18,9 +18,6 @@ uart:
     stop_bits: 1
     parity: NONE
     data_bits: 8
-time:
-  - platform: homeassistant
-    id: homeassistant_time
 
 modbus:
   id: mod_bus_must
