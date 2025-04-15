@@ -155,6 +155,8 @@ interval:
       - delay: 500ms
       - lambda: "id(electric_stove).update();"
       - delay: 500ms
+      - lambda: "id(dishwasher).update();"
+      - delay: 500ms
       - lambda: "id(phaze_a).update();"
       - delay: 500ms
       - lambda: "id(phaze_b).update();"
