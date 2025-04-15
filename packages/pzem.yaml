@@ -11,6 +11,17 @@ modbus:
 
 sensor:
   - platform: pzemac
+    address: 2
+    id: dishwasher
+    modbus_id: pzem_modbus
+    power:
+      name: "PZEM-004T V3 Power Dishwasher"
+      unit_of_measurement: W
+    energy:
+      name: "PZEM-004T V3 Energy Dishwasher"
+      unit_of_measurement: Wh
+    update_interval: never
+  - platform: pzemac
     address: 5
     id: microwave
     modbus_id: pzem_modbus
