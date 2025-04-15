@@ -18,6 +18,9 @@ uart:
     stop_bits: 1
     parity: NONE
     data_bits: 8
+time:
+  - platform: homeassistant
+    id: homeassistant_time
 
 modbus:
   id: mod_bus_must
@@ -30,7 +33,11 @@ modbus_controller:
     modbus_id: mod_bus_must
     setup_priority: -10
     update_interval: never
-
+    on_command_sent:
+      then:
+        - light.turn_on: indicator 
+        - light.turn_off: indicator 
+        
 wifi:
   networks:
     manual_ip:
