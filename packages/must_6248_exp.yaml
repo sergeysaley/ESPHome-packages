@@ -30,13 +30,6 @@ modbus_controller:
     setup_priority: -10
     update_interval: never
 
-wifi:
-  networks:
-    manual_ip:
-      static_ip: 192.168.88.142
-      gateway: 192.168.88.1
-      subnet: 255.255.255.0
-
 switch:
   - platform: template
     name: "Use customer limits for battery discharge"
