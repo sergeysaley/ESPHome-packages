@@ -33,6 +33,17 @@ sensor:
       unit_of_measurement: Wh
     update_interval: never
   - platform: pzemac
+    address: 4
+    id: washing_machine_1
+    modbus_id: pzem_modbus
+    power:
+      name: "PZEM-004T V3 Power Washing machine 1"
+      unit_of_measurement: W
+    energy:
+      name: "PZEM-004T V3 Energy Washinng machine 1"
+      unit_of_measurement: Wh
+    update_interval: never
+  - platform: pzemac
     address: 5
     id: microwave
     modbus_id: pzem_modbus
@@ -45,13 +56,13 @@ sensor:
     update_interval: never
   - platform: pzemac
     address: 6
-    id: washing_machine
+    id: washing_machine_2
     modbus_id: pzem_modbus
     power:
-      name: "PZEM-004T V3 Power Washing machine"
+      name: "PZEM-004T V3 Power Washing machine 2"
       unit_of_measurement: W
     energy:
-      name: "PZEM-004T V3 Energy Washing machine"
+      name: "PZEM-004T V3 Energy Washing machine 2"
       unit_of_measurement: Wh
     update_interval: never
   - platform: pzemac
@@ -162,7 +173,9 @@ interval:
       - delay: 500ms
       - lambda: "id(microwave).update();"
       - delay: 500ms
-      - lambda: "id(washing_machine).update();"
+      - lambda: "id(washing_machine_1).update();"
+      - delay: 500ms
+      - lambda: "id(washing_machine_2).update();"
       - delay: 500ms
       - lambda: "id(electric_stove).update();"
       - delay: 500ms
