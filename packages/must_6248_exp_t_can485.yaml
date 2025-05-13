@@ -124,21 +124,18 @@ sensor:
   - platform: modbus_controller
     address: 114
     name: "State of Health"
-    id: soh
     unit_of_measurement: "%"
     register_type: holding
 
   - platform: modbus_controller
     address: 15201
     name: "Charger workstate"
-    id: charger_workstate
     register_type: holding
     icon: mdi:battery-charging-50
 
   - platform: modbus_controller
     address: 15202
     name: "MPPT state"
-    id: mppt_state
     register_type: holding
 
   - platform: modbus_controller
@@ -200,7 +197,6 @@ sensor:
   - platform: modbus_controller
     address: 15205
     name: "PV1 voltage"
-    id: pv1_voltage
     register_type: holding
     unit_of_measurement: "V"
     accuracy_decimals: 1
@@ -211,7 +207,6 @@ sensor:
   - platform: modbus_controller
     address: 16205
     name: "PV2 voltage"
-    id: pv2_voltage
     register_type: holding
     unit_of_measurement: "V"
     accuracy_decimals: 1
