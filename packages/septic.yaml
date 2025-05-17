@@ -10,7 +10,7 @@ i2c:
 
 sensor:
   - platform: vl53l1x_sensor
-    name: ${device_name} distance    
+    name: Distance    
     distance_mode: MEDIUM
     signal_threshold: 512
     timing_budget: 200ms
