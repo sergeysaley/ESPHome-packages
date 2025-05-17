@@ -39,19 +39,19 @@ binary_sensor:
 
 switch:
   - platform: output
-    name: "${device_name} Switch_1"
+    name: "Switch_1"
     id: switch_1
     output: relay_1
   - platform: output
-    name: "${device_name} Switch_2"
+    name: "Switch_2"
     id: switch_2
     output: relay_2
   - platform: output
-    name: "${device_name} Switch_3"
+    name: "Switch_3"
     id: switch_3
     output: relay_3
   - platform: output
-    name: "${device_name} Switch_4"
+    name: "Switch_4"
     id: switch_4
     output: relay_4
 
@@ -76,7 +76,7 @@ output:
 light:
   - platform: monochromatic
     id: led
-    name: "${device_name} Bluelight"
+    name: "Bluelight"
     output: blue_led
     effects:
       - flicker:
