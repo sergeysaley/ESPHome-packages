@@ -49,4 +49,4 @@ sensor:
 
 switch:
   - platform: restart
-    name: "${device_name} restart"  
+    name: "Restart"  
