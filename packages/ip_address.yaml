@@ -1,8 +1,8 @@
 platform: wifi_info
 ip_address:
-  name: "${device_name} IP address"
+  name: "IP address"
   icon: "mdi:ip-network-outline"
 ssid:
-  name: "${device_name} SSID"
+  name: "SSID"
 bssid:
-  name: "${device_name} BSSID"
+  name: "BSSID"
