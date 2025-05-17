@@ -10,11 +10,11 @@ binary_sensor:
 
 light:
   - platform: binary
-    name: "${device_name} Light_1"
+    name: "Light_1"
     id: light_1
     output: relay_1
   - platform: monochromatic
-    name: "${device_name} BlueLight"
+    name: "BlueLight"
     output: blue_led 
 
 output:
