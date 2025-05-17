@@ -49,19 +49,19 @@ output:
     
 light:
   - platform: binary
-    name: "${device_name} Light_1"
+    name: "Light_1"
     id: light_1
     output: relay_1
   - platform: binary
-    name: "${device_name} Light_2"
+    name: "Light_2"
     id: light_2
     output: relay_2
   - platform: binary
-    name: "${device_name} Light_3"
+    name: "Light_3"
     id: light_3
     output: relay_3
   - platform: monochromatic
-    name: "${device_name} LED"
+    name: "LED"
     disabled_by_default: true
     id: led
     output: blue_led
