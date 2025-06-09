@@ -1,10 +1,10 @@
 esphome:
-  on_boot:
-    then:
-      light.turn_on:
-        id: led
-        brightness: 100%
-        effect: "Flicker Effect"
+#  on_boot:
+#    then:
+#      light.turn_on:
+#        id: led
+#        brightness: 100%
+#        effect: "Flicker Effect"
 
 binary_sensor:
   - platform: gpio
