@@ -4,7 +4,7 @@ esphome:
       - light.turn_on: 
           id: led
           brightness: 100%
-          effect: "Flicker Effect"
+#          effect: "Flicker Effect"
 
 binary_sensor:
   - platform: gpio
