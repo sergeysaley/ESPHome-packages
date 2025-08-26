@@ -1,0 +1,377 @@
+esphome:
+  name: ${name}
+  comment: ${device_description}
+  min_version: 2024.6.0
+  project:
+    name: "syssi.esphome-seplos-bms"
+    version: 1.0.0
+
+esp32:
+  board: esp32-s3-devkitc-1
+  framework:
+    type: esp-idf
+
+external_components:
+  - source: ${external_components_source}
+    refresh: 0s
+
+esp32_ble_tracker:
+
+ble_client:
+  - mac_address: ${mac_address0}
+    id: client0
+  - mac_address: ${mac_address1}
+    id: client1
+  - mac_address: ${mac_address2}
+    id: client2
+
+seplos_bms_ble:
+  - ble_client_id: client0
+    id: bms0
+    update_interval: 30s
+  - ble_client_id: client1
+    id:  bms1
+    update_interval: 30s
+  - ble_client_id: client2
+    id: bms2
+    update_interval: 30s
+
+sensor:
+  - platform: template
+    name: "Device Free RAM"
+    unit_of_measurement: "kB"
+    accuracy_decimals: 0
+    update_interval: 60s
+    lambda: |-
+      return (float) (esp_get_free_heap_size() / 1024.0);
+  - platform: seplos_bms_ble
+    seplos_bms_ble_id: bms0
+    alarm_event1_bitmask:
+      name: "bms0 alarm event 1 bitmask"
+    alarm_event2_bitmask:
+      name: "bms0 alarm event 2 bitmask"
+    alarm_event3_bitmask:
+      name: "bms0 alarm event 3 bitmask"
+    alarm_event4_bitmask:
+      name: "bms0 alarm event 4 bitmask"
+    alarm_event5_bitmask:
+      name: "bms0 alarm event 5 bitmask"
+    alarm_event6_bitmask:
+      name: "bms0 alarm event 6 bitmask"
+    alarm_event7_bitmask:
+      name: "bms0 alarm event 7 bitmask"
+    alarm_event8_bitmask:
+      name: "bms0 alarm event 8 bitmask"
+    total_voltage:
+      name: "bms0 total voltage"
+    current:
+      name: "bms0 current"
+    charging_power:
+      name: "bms0 charging power"
+    discharging_power:
+      name: "bms0 discharging power"
+    capacity_remaining:
+      name: "bms0 capacity remaining"
+    state_of_charge:
+      name: "bms0 state of charge"
+    nominal_capacity:
+      name: "bms0 nominal capacity"
+    charging_cycles:
+      name: "bms0 charging cycles"
+    min_cell_voltage:
+      name: "bms0 min cell voltage"
+    max_cell_voltage:
+      name: "bms0 max cell voltage"
+    min_voltage_cell:
+      name: "bms0 min voltage cell"
+    max_voltage_cell:
+      name: "bms0 max voltage cell"
+    delta_cell_voltage:
+      name: "bms0 delta cell voltage"
+    average_cell_voltage:
+      name: "bms0 average cell voltage"
+    average_cell_temperature:
+      name: "bms0 average cell temperature"
+    ambient_temperature:
+      name: "bms0 ambient temperature"
+    mosfet_temperature:
+      name: "bms0 mosfet temperature"
+    state_of_health:
+      name: "bms0 state of health"
+    port_voltage:
+      name: "bms0 port voltage"
+    battery_capacity:
+      name: "bms0 battery capacity"
+    temperature_1:
+      name: "bms0 temperature 1"
+    temperature_2:
+      name: "bms0 temperature 2"
+    temperature_3:
+      name: "bms0 temperature 3"
+    temperature_4:
+      name: "bms0 temperature 4"
+    cell_voltage_1:
+      name: "bms0 cell voltage 1"
+    cell_voltage_2:
+      name: "bms0 cell voltage 2"
+    cell_voltage_3:
+      name: "bms0 cell voltage 3"
+    cell_voltage_4:
+      name: "bms0 cell voltage 4"
+    cell_voltage_5:
+      name: "bms0 cell voltage 5"
+    cell_voltage_6:
+      name: "bms0 cell voltage 6"
+    cell_voltage_7:
+      name: "bms0 cell voltage 7"
+    cell_voltage_8:
+      name: "bms0 cell voltage 8"
+    cell_voltage_9:
+      name: "bms0 cell voltage 9"
+    cell_voltage_10:
+      name: "bms0 cell voltage 10"
+    cell_voltage_11:
+      name: "bms0 cell voltage 11"
+    cell_voltage_12:
+      name: "bms0 cell voltage 12"
+    cell_voltage_13:
+      name: "bms0 cell voltage 13"
+    cell_voltage_14:
+      name: "bms0 cell voltage 14"
+    cell_voltage_15:
+      name: "bms0 cell voltage 15"
+    cell_voltage_16:
+      name: "bms0 cell voltage 16"
+
+
+  - platform: seplos_bms_ble
+    seplos_bms_ble_id: bms1
+    alarm_event1_bitmask:
+      name: "bms1 alarm event 1 bitmask"
+    alarm_event2_bitmask:
+      name: "bms1 alarm event 2 bitmask"
+    alarm_event3_bitmask:
+      name: "bms1 alarm event 3 bitmask"
+    alarm_event4_bitmask:
+      name: "bms1 alarm event 4 bitmask"
+    alarm_event5_bitmask:
+      name: "bms1 alarm event 5 bitmask"
+    alarm_event6_bitmask:
+      name: "bms1 alarm event 6 bitmask"
+    alarm_event7_bitmask:
+      name: "bms1 alarm event 7 bitmask"
+    alarm_event8_bitmask:
+      name: "bms1 alarm event 8 bitmask"
+    total_voltage:
+      name: "bms1 total voltage"
+    current:
+      name: "bms1 current"
+    charging_power:
+      name: "bms1 charging power"
+    discharging_power:
+      name: "bms1 discharging power"
+    capacity_remaining:
+      name: "bms1 capacity remaining"
+    state_of_charge:
+      name: "bms1 state of charge"
+    nominal_capacity:
+      name: "bms1 nominal capacity"
+    charging_cycles:
+      name: "bms1 charging cycles"
+    min_cell_voltage:
+      name: "bms1 min cell voltage"
+    max_cell_voltage:
+      name: "bms1 max cell voltage"
+    min_voltage_cell:
+      name: "bms1 min voltage cell"
+    max_voltage_cell:
+      name: "bms1 max voltage cell"
+    delta_cell_voltage:
+      name: "bms1 delta cell voltage"
+    average_cell_voltage:
+      name: "bms1 average cell voltage"
+    average_cell_temperature:
+      name: "bms1 average cell temperature"
+    ambient_temperature:
+      name: "bms1 ambient temperature"
+    mosfet_temperature:
+      name: "bms1 mosfet temperature"
+    state_of_health:
+      name: "bms1 state of health"
+    port_voltage:
+      name: "bms1 port voltage"
+    battery_capacity:
+      name: "bms1 battery capacity"
+    temperature_1:
+      name: "bms1 temperature 1"
+    temperature_2:
+      name: "bms1 temperature 2"
+    temperature_3:
+      name: "bms1 temperature 3"
+    temperature_4:
+      name: "bms1 temperature 4"
+    cell_voltage_1:
+      name: "bms1 cell voltage 1"
+    cell_voltage_2:
+      name: "bms1 cell voltage 2"
+    cell_voltage_3:
+      name: "bms1 cell voltage 3"
+    cell_voltage_4:
+      name: "bms1 cell voltage 4"
+    cell_voltage_5:
+      name: "bms1 cell voltage 5"
+    cell_voltage_6:
+      name: "bms1 cell voltage 6"
+    cell_voltage_7:
+      name: "bms1 cell voltage 7"
+    cell_voltage_8:
+      name: "bms1 cell voltage 8"
+    cell_voltage_9:
+      name: "bms1 cell voltage 9"
+    cell_voltage_10:
+      name: "bms1 cell voltage 10"
+    cell_voltage_11:
+      name: "bms1 cell voltage 11"
+    cell_voltage_12:
+      name: "bms1 cell voltage 12"
+    cell_voltage_13:
+      name: "bms1 cell voltage 13"
+    cell_voltage_14:
+      name: "bms1 cell voltage 14"
+    cell_voltage_15:
+      name: "bms1 cell voltage 15"
+    cell_voltage_16:
+      name: "bms1 cell voltage 16"
+
+  - platform: seplos_bms_ble
+    seplos_bms_ble_id: bms2
+    alarm_event1_bitmask:
+      name: "bms2 alarm event 1 bitmask"
+    alarm_event2_bitmask:
+      name: "bms2 alarm event 2 bitmask"
+    alarm_event3_bitmask:
+      name: "bms2 alarm event 3 bitmask"
+    alarm_event4_bitmask:
+      name: "bms2 alarm event 4 bitmask"
+    alarm_event5_bitmask:
+      name: "bms2 alarm event 5 bitmask"
+    alarm_event6_bitmask:
+      name: "bms2 alarm event 6 bitmask"
+    alarm_event7_bitmask:
+      name: "bms2 alarm event 7 bitmask"
+    alarm_event8_bitmask:
+      name: "bms2 alarm event 8 bitmask"
+    total_voltage:
+      name: "bms2 total voltage"
+    current:
+      name: "bms2 current"
+    charging_power:
+      name: "bms2 charging power"
+    discharging_power:
+      name: "bms2 discharging power"
+    capacity_remaining:
+      name: "bms2 capacity remaining"
+    state_of_charge:
+      name: "bms2 state of charge"
+    nominal_capacity:
+      name: "bms2 nominal capacity"
+    charging_cycles:
+      name: "bms2 charging cycles"
+    min_cell_voltage:
+      name: "bms2 min cell voltage"
+    max_cell_voltage:
+      name: "bms2 max cell voltage"
+    min_voltage_cell:
+      name: "bms2 min voltage cell"
+    max_voltage_cell:
+      name: "bms2 max voltage cell"
+    delta_cell_voltage:
+      name: "bms2 delta cell voltage"
+    average_cell_voltage:
+      name: "bms2 average cell voltage"
+    average_cell_temperature:
+      name: "bms2 average cell temperature"
+    ambient_temperature:
+      name: "bms2 ambient temperature"
+    mosfet_temperature:
+      name: "bms2 mosfet temperature"
+    state_of_health:
+      name: "bms2 state of health"
+    port_voltage:
+      name: "bms2 port voltage"
+    battery_capacity:
+      name: "bms2 battery capacity"
+    temperature_1:
+      name: "bms2 temperature 1"
+    temperature_2:
+      name: "bms2 temperature 2"
+    temperature_3:
+      name: "bms2 temperature 3"
+    temperature_4:
+      name: "bms2 temperature 4"
+    cell_voltage_1:
+      name: "bms2 cell voltage 1"
+    cell_voltage_2:
+      name: "bms2 cell voltage 2"
+    cell_voltage_3:
+      name: "bms2 cell voltage 3"
+    cell_voltage_4:
+      name: "bms2 cell voltage 4"
+    cell_voltage_5:
+      name: "bms2 cell voltage 5"
+    cell_voltage_6:
+      name: "bms2 cell voltage 6"
+    cell_voltage_7:
+      name: "bms2 cell voltage 7"
+    cell_voltage_8:
+      name: "bms2 cell voltage 8"
+    cell_voltage_9:
+      name: "bms2 cell voltage 9"
+    cell_voltage_10:
+      name: "bms2 cell voltage 10"
+    cell_voltage_11:
+      name: "bms2 cell voltage 11"
+    cell_voltage_12:
+      name: "bms2 cell voltage 12"
+    cell_voltage_13:
+      name: "bms2 cell voltage 13"
+    cell_voltage_14:
+      name: "bms2 cell voltage 14"
+    cell_voltage_15:
+      name: "bms2 cell voltage 15"
+    cell_voltage_16:
+      name: "bms2 cell voltage 16"
+
+text_sensor:
+  - platform: seplos_bms_ble
+    seplos_bms_ble_id: bms0
+    software_version:
+      name: "bms0 software version"
+    device_model:
+      name: "bms0 device model"
+    hardware_version:
+      name: "bms0 hardware version"
+    alarms:
+      name: "bms0 alarms"
+
+  - platform: seplos_bms_ble
+    seplos_bms_ble_id: bms1
+    software_version:
+      name: "bms1 software version"
+    device_model:
+      name: "bms1 device model"
+    hardware_version:
+      name: "bms1 hardware version"
+    alarms:
+      name: "bms1 alarms"
+
+  - platform: seplos_bms_ble
+    seplos_bms_ble_id: bms2
+    software_version:
+      name: "bms2 software version"
+    device_model:
+      name: "bms2 device model"
+    hardware_version:
+      name: "bms2 hardware version"
+    alarms:
+      name: "bms2 alarms"
