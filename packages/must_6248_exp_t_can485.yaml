@@ -258,10 +258,6 @@ binary_sensor:
     name: "IE: Inverter output voltage is too low"
     lambda: uint16_t error = id(inverter_error_message_2).state; if (bitRead(error,14)) { return true; } else { return false; }
 
-  - platform: template
-    name: "IE: "
-    lambda: uint16_t error = id(inverter_error_message_2).state; if (bitRead(error,15)) { return true; } else { return false; }
-
   # IW: - Inverter Warnings from 25265 (id(inverter_warning_message_1))
   - platform: template
     name: "IW: Fan is locked when inverter is on"
