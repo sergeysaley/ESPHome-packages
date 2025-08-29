@@ -14,7 +14,6 @@ vl53l1x:
 
 sensor:
   - platform: vl53l1x
-    i2c_id: bus_a
     distance:
       name: "VL53L1X ToF Distance Sensor"
       id: water_sensor
