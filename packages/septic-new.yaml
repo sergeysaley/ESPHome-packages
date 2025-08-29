@@ -1,5 +1,5 @@
 external_components:
-  - source: github://soldierkam/vl53l1x_sensor
+  - source: github://Averyy/esphome-custom-components
     refresh: 0s
 
 i2c:
@@ -8,23 +8,30 @@ i2c:
   scan: true
   frequency: 400kHz
 
+vl53l1x:
+  distance_mode: long
+  update_interval: 0.5s
+
 sensor:
-  - platform: vl53l1x_sensor
-    name: Distance    
-    distance_mode: LONG
-    signal_threshold: 512
-    timing_budget: 500ms
-    update_interval: 15s
-    accuracy_decimals: 3
-    roi_center: 199
-    roi_size:
-      x: 15
-      y: 15
-    ambient_rate_sensor: 
-      name: "Ambient Rate [MCPS]"
-    avg_signal_rate_sensor: 
-      name: "Average Signal Rate [MCPS]"
-    peak_signal_rate_sensor: 
-      name: "Peak Signal Rate [MCPS]"
-    range_status_sensor:
-      name: "Range Status"
+  - platform: vl53l1x
+    i2c_id: bus_a
+    distance:
+      name: "VL53L1X ToF Distance Sensor"
+      id: water_sensor
+      entity_category: "diagnostic"
+      filters:
+        - lambda: |-
+            static auto start_time = millis();
+            if (millis() - start_time < 120000) { // 2 minutes
+              return {}; // Return empty to skip this reading
+            }
+            // After 2 minutes, apply your existing filters
+            if (x < 45 || x > 4200 || x == 0.0 || std::isnan(x)) {
+              return 0;
+            }
+            return x;
+        - quantile:
+            window_size: 11
+            send_every: 11
+            send_first_at: 11
+            quantile: 0.5
