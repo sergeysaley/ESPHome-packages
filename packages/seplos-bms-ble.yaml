@@ -26,6 +26,7 @@ light:
     restore_mode: ALWAYS_OFF
     name: "My Light"
     id: onboard_led
+    internal: true
 
 
 ble_client:
