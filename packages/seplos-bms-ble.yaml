@@ -17,6 +17,17 @@ external_components:
 
 esp32_ble_tracker:
 
+light:
+  - platform: esp32_rmt_led_strip
+    rgb_order: GRB
+    pin: GPIO48
+    num_leds: 1
+    chipset: ws2812
+    restore_mode: ALWAYS_OFF
+    name: "My Light"
+    id: onboard_led
+
+
 ble_client:
   - mac_address: ${mac_address0}
     id: client0
