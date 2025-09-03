@@ -6,9 +6,7 @@ from esphome.const import CONF_ID, DEVICE_CLASS_DISTANCE, STATE_CLASS_MEASUREMEN
 DEPENDENCIES = ["i2c"]
 
 vl53l1x_ns = cg.esphome_ns.namespace("vl53l1x_sensor")
-VL53L1XSensor = vl53l1x_ns.class_(
-    "VL53L1XSensor", cg.PollingComponent, i2c.I2CDevice
-)
+VL53L1XSensor = vl53l1x_ns.class_("VL53L1XSensor", cg.PollingComponent, i2c.I2CDevice)
 
 CONFIG_SCHEMA = (
     sensor.sensor_schema(
@@ -22,7 +20,12 @@ CONFIG_SCHEMA = (
 )
 
 async def to_code(config):
+    # C++ об’єкт
     var = cg.new_Pvariable(config[CONF_ID])
+
+    # РЕЄСТРАЦІЯ ТІЛЬКИ 1 РАЗ
     await cg.register_component(var, config)
     await i2c.register_i2c_device(var, config)
+
+    # Sensor реєструється через Python
     await sensor.register_sensor(var.distance_sensor, config)
