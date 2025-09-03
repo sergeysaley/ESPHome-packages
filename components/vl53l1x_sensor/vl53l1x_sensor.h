@@ -1,3 +1,4 @@
+#pragma once
 #include "esphome/core/component.h"
 #include "esphome/components/i2c/i2c.h"
 #include "esphome/components/sensor/sensor.h"
@@ -13,8 +14,7 @@ class VL53L1XSensor : public PollingComponent, public i2c::I2CDevice {
   void setup() override;
   void update() override;
 
-  // Pointer на sensor об’єкт, який реєструється у Python
-  sensor::Sensor *distance_sensor = nullptr;
+  sensor::Sensor *distance_sensor = new sensor::Sensor();
 
  protected:
   VL53L1X vl_;
