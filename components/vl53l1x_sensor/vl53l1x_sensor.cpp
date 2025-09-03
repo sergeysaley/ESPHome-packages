@@ -25,7 +25,7 @@ void VL53L1XSensor::update() {
     return;
   }
   if (distance_sensor)
-    distance_sensor->publish_state(distance / 10.0f);  // см
+    distance_sensor->publish_state(distance / 10.0f); // см
 }
 
 }  // namespace vl53l1x_sensor
