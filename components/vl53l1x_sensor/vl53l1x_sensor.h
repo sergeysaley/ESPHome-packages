@@ -6,12 +6,14 @@
 namespace esphome {
 namespace vl53l1x_sensor {
 
-class VL53L1XSensor : public PollingComponent, public i2c::I2CDevice, public sensor::Sensor {
+class VL53L1XSensor : public PollingComponent, public i2c::I2CDevice {
  public:
-  VL53L1XSensor() : PollingComponent(1000) {}
+  Sensor *distance_sensor = new Sensor();
 
+  VL53L1XSensor() : PollingComponent(1000) {}
   void setup() override;
   void update() override;
+};
 
  protected:
   VL53L1X vl_;
