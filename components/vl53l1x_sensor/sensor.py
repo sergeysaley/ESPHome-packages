@@ -2,12 +2,11 @@ import esphome.codegen as cg
 import esphome.config_validation as cv
 from esphome.components import i2c, sensor
 from esphome.const import CONF_ID, DEVICE_CLASS_DISTANCE, STATE_CLASS_MEASUREMENT
-import esphome.const as c
 
 DEPENDENCIES = ["i2c"]
 
 vl53l1x_ns = cg.esphome_ns.namespace("vl53l1x_sensor")
-VL53L1XSensor = vl53l1x_ns.class_("VL53L1XSensor", cg.PollingComponent, i2c.I2CDevice, sensor.Sensor)
+VL53L1XSensor = vl53l1x_ns.class_("VL53L1XSensor", cg.PollingComponent, i2c.I2CDevice)
 
 CONFIG_SCHEMA = (
     sensor.sensor_schema(
@@ -24,4 +23,6 @@ async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
     await i2c.register_i2c_device(var, config)
-    await sensor.register_sensor(var, config)
+    # створюємо sensor об'єкт у Python через distance_sensor
+    sens = var.distance_sensor
+    await sensor.register_sensor(sens, config)
