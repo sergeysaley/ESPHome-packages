@@ -23,9 +23,6 @@ CONFIG_SCHEMA = (
 
 async def to_code(config):
     var = cg.new_Pvariable(config[CONF_ID])
-    # ESPHome очікує, що C++ клас наслідує Component, PollingComponent достатньо
     await cg.register_component(var, config)
     await i2c.register_i2c_device(var, config)
-
-    # створюємо Sensor об’єкт у Python
     await sensor.register_sensor(var.distance_sensor, config)
