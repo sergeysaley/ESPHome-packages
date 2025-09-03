@@ -6,7 +6,7 @@ from esphome.const import CONF_ID, DEVICE_CLASS_DISTANCE, STATE_CLASS_MEASUREMEN
 DEPENDENCIES = ["i2c"]
 
 vl53l1x_ns = cg.esphome_ns.namespace("vl53l1x_sensor")
-VL53L1XSensor = vl53l1x_ns.class_("VL53L1XSensor")
+VL53L1XSensor = vl53l1x_ns.class_("VL53L1XSensor", cg.PollingComponent, i2c.I2CDevice)
 
 CONFIG_SCHEMA = (
     sensor.sensor_schema(
@@ -20,15 +20,10 @@ CONFIG_SCHEMA = (
 )
 
 async def to_code(config):
-    # Створюємо Python об’єкт (без C++ PollingComponent)
     var = cg.new_Pvariable(config[CONF_ID])
+    await cg.register_component(var, config)       # ОБОВ’ЯЗКОВО
+    await i2c.register_i2c_device(var, config)
 
-    # Реєструємо як компонент через Python
-    await cg.register_component(var, config)
-
-    # Створюємо сенсор через Python API
+    # Створюємо sensor через Python, прив’язаний до C++ класу
     distance_sensor = sensor.new_sensor(var, config)
     var.distance_sensor = distance_sensor
-
-    # Підключаємо I2C
-    await i2c.register_i2c_device(var, config)
