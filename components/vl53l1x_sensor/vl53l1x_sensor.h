@@ -7,7 +7,8 @@
 namespace esphome {
 namespace vl53l1x_sensor {
 
-class VL53L1XSensor : public PollingComponent, public i2c::I2CDevice {
+// Наслідуємося від PollingComponent і i2c::I2CDevice
+class VL53L1XSensor : public esphome::PollingComponent, public i2c::I2CDevice {
  public:
   VL53L1XSensor() : PollingComponent(1000) {}
 
