@@ -20,9 +20,12 @@ CONFIG_SCHEMA = (
 )
 
 async def to_code(config):
+    # створюємо C++ об’єкт
     var = cg.new_Pvariable(config[CONF_ID])
     await cg.register_component(var, config)
     await i2c.register_i2c_device(var, config)
-    # створюємо sensor об'єкт у Python через distance_sensor
-    sens = var.distance_sensor
+
+    # створюємо Sensor об’єкт у Python
+    sens = sensor.new_sensor(config)
+    var.distance_sensor = sens
     await sensor.register_sensor(sens, config)
