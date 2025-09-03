@@ -1,11 +1,10 @@
-
 #include "vl53l1x_sensor.h"
 #include "esphome/core/log.h"
 
 namespace esphome {
 namespace vl53l1x_sensor {
 
-static const char *const TAG = "vl53l1x_sensor";
+static const char *TAG = "vl53l1x_sensor";
 
 void VL53L1XSensor::setup() {
   ESP_LOGCONFIG(TAG, "Setting up VL53L1X...");
@@ -25,7 +24,8 @@ void VL53L1XSensor::update() {
     ESP_LOGW(TAG, "VL53L1X read failed!");
     return;
   }
-  publish_state(distance / 10.0f); // см
+  if (distance_sensor)
+    distance_sensor->publish_state(distance / 10.0f);  // см
 }
 
 }  // namespace vl53l1x_sensor
