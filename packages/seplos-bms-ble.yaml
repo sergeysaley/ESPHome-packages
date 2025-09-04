@@ -40,13 +40,13 @@ ble_client:
 seplos_bms_ble:
   - ble_client_id: client0
     id: bms0
-    update_interval: 30s
+    update_interval: 60s
   - ble_client_id: client1
     id:  bms1
-    update_interval: 30s
+    update_interval: 60s
   - ble_client_id: client2
     id: bms2
-    update_interval: 30s
+    update_interval: 60s
 
 sensor:
   - platform: template
@@ -64,7 +64,7 @@ sensor:
         then:
           - light.turn_on: 
               id: onboard_led
-              flash_length: 0.3s
+              flash_length: 0.5s
               brightness: 50%
               red: 0%
               green: 0%
@@ -174,7 +174,7 @@ sensor:
         then:
           - light.turn_on: 
               id: onboard_led
-              flash_length: 0.3s
+              flash_length: 0.5s
               brightness: 50%
               red: 0%
               green: 100%
@@ -283,7 +283,7 @@ sensor:
         then:
           - light.turn_on: 
               id: onboard_led
-              flash_length: 0.3s
+              flash_length: 0.5s
               brightness: 50%
               red: 100%
               green: 0%
