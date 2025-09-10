@@ -345,6 +345,16 @@ sensor:
                 - select.set_index:
                     id: energy_use_mode
                     index: 0  # SBU
+      - if:
+        then:
+          - lambda: |-
+              auto now = id(sntp_time).now();
+              auto options = id(id1).traits.get_options();
+              if ((now.hour >= 23) || (now.hour < 7)) {
+                id(charger_source_priority).publish_state(options[2]);
+              } else {
+                id(charger_source_priority).publish_state(options[3]);
+              }
 
   - platform: modbus_controller
     address: 114
