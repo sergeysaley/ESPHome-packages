@@ -356,8 +356,8 @@ sensor:
                 return ((now.hour >= 23 || now.hour < 7) && id(grid_charge_enabled).state);
             then:
               - select.set_index:
-                  id: charger_source_priority # SNU
-                  index: 2
+                  id: charger_source_priority # CSO
+                  index: 0
             else:
               - if:
                   condition:
@@ -367,7 +367,7 @@ sensor:
                   then:
                     - select.set_index:
                         id: charger_source_priority # OSO
-                        index: 3
+                        index: 0
 
   - platform: modbus_controller
     address: 114
