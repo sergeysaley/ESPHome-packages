@@ -38,13 +38,9 @@ light:
     internal: True
 
 time:
-  - platform: sntp
-    timezone: Europe/Kyiv
-    id: sntp_time
-    servers:
-     - 162.159.200.1
-     - 91.236.251.29
-     
+  - platform: homeassistant
+    id: homeassistant_time     
+    
 interval:
   - interval: 10s
     then:
@@ -320,7 +316,7 @@ sensor:
   - platform: template
     name: cond 
     lambda: |-
-      auto now = id(sntp_time).now();
+      auto now = id(homeassistant_time).now();
       return (now.hour);
       
 #  - platform: modbus_controller
@@ -357,9 +353,8 @@ sensor:
         - if:
             condition:
               lambda: |-
-                auto now = id(sntp_time).now();
-                int local_hour = (now.hour + 3) % 24;  // Kyiv = UTC+3
-                return ((local_hour >= 23 || local_hour < 7) && id(grid_charge_enabled).state);
+                auto now = id(homeassistant_time).now();
+                return ((now.hour >= 23 || now.hour < 7) && id(grid_charge_enabled).state);
             then:
               - select.set_index:
                   id: charger_source_priority # CSO
@@ -368,9 +363,8 @@ sensor:
               - if:
                   condition:
                     lambda: |-
-                      auto now = id(sntp_time).now();
-                   int local_hour = (now.hour + 3) % 24;  // Kyiv = UTC+3
-                   return (local_hour < 23 && local_hour >= 7 && id(grid_charge_enabled).state);
+                auto now = id(homeassistant_time).now();
+                   return (now.hour < 23 && now.hour >= 7 && id(grid_charge_enabled).state);
                   then:
                     - select.set_index:
                         id: charger_source_priority # OSO
