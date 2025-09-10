@@ -355,7 +355,7 @@ sensor:
               - if:
                   condition:
                     lambda: |-
-                      return (x > id(discharge_margin).state + 10 && id(limits_enabled).state);
+                      return (x > 80 && id(limits_enabled).state);
                   then:
                     - select.set_index:
                         id: energy_use_mode # SBU
@@ -369,6 +369,9 @@ sensor:
               - select.set_index:
                   id: charger_source_priority # CSO
                   index: 0
+              - select.set_index:
+                  id: energy_use_mode # SUB
+                  index: 1
             else:
               - if:
                   condition:
@@ -379,6 +382,9 @@ sensor:
                     - select.set_index:
                         id: charger_source_priority # OSO
                         index: 2
+                    - select.set_index:
+                        id: energy_use_mode # SBU
+                        index: 0
 
   - platform: modbus_controller
     address: 114
