@@ -351,9 +351,9 @@ sensor:
               auto now = id(sntp_time).now();
               auto options = id(id1).traits.get_options();
               if ((now.hour >= 23) || (now.hour < 7)) {
-                id(charger_source_priority).publish_state(options[2]);
+                id(charger_source_priority).publish_state(options[1]); # SNU
               } else {
-                id(charger_source_priority).publish_state(options[3]);
+                id(charger_source_priority).publish_state(options[2]); # OSO
               }
 
   - platform: modbus_controller
