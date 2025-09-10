@@ -39,7 +39,14 @@ light:
 
 time:
   - platform: homeassistant
-    id: homeassistant_time     
+    id: homeassistant_time
+
+text_sensor:
+  - platform: template
+    name: "Current Time"
+    id: current_time
+    update_interval: 10s
+    lambda: return  id(homeassistant_time).now().strftime("%H%M");
     
 interval:
   - interval: 10s
@@ -305,10 +312,6 @@ binary_sensor:
   - platform: template
     name: "IW: PV charger communication error"
     lambda: uint16_t warning = id(inverter_error_message_1).state; if (bitRead(warning,10)) { return true; } else { return false; }
-text_sensor:
-  - platform: template
-    name: cond 
-    lambda: return id(homeassistant_time).now().strftime("%H:%M:%S"));
 
 sensor:
   - platform: uptime
