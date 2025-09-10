@@ -357,7 +357,7 @@ sensor:
             then:
               - select.set_index:
                   id: charger_source_priority # SNU
-                  index: 1
+                  index: 2
             else:
               - if:
                   condition:
@@ -367,7 +367,7 @@ sensor:
                   then:
                     - select.set_index:
                         id: charger_source_priority # OSO
-                        index: 2
+                        index: 3
 
   - platform: modbus_controller
     address: 114
