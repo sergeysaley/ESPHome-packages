@@ -4,9 +4,9 @@ time:
 
 text_sensor:
   - platform: template
-    name: "Current hour"
     id: hour
     update_interval: 10s
+    internal: true
     lambda: return  id(homeassistant_time).now().strftime("%H");
 
 esphome:
@@ -316,9 +316,9 @@ binary_sensor:
 
 sensor:
   - platform: template
-    name: "Current hour INT"
     id: hour_int
     update_interval: 10s
+    internal: true
     lambda: |-
         std::string hour_str = id(hour).state;      // беремо рядок з text_sensor
         int hour_val = std::stoi(hour_str);         // конвертуємо в int
