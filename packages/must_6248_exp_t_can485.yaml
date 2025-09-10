@@ -367,7 +367,7 @@ sensor:
                   then:
                     - select.set_index:
                         id: charger_source_priority # OSO
-                        index: 3
+                        index: 2
 
   - platform: modbus_controller
     address: 114
