@@ -352,7 +352,7 @@ sensor:
             condition:
               lambda: |-
                 auto now = id(sntp_time).now();
-                return ((now.hour >= 23) || (now.hour < 7));
+                return ((now.hour >= 23 || now.hour < 7) && id(grid_charge_enabled).state);
             then:
               - select.set_index:
                   id: charger_source_priority
