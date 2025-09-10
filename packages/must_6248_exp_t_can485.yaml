@@ -317,7 +317,13 @@ sensor:
     name: Uptime Sensor
     id: uptime_sensor
     update_interval: 5s
-    
+
+  - platform: template
+    name: cond 
+    lambda: |-
+      auto now = id(sntp_time).now();
+      return (now.hour);
+      
 #  - platform: modbus_controller
 #    address: 10111
 #    name: "Battery Ah"
