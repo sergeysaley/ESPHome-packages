@@ -339,7 +339,7 @@ sensor:
             then:
               - select.set_index:
                   id: energy_use_mode # SUB
-                  index: 1
+                  index: 2
             else:
               - if:
                   condition:
@@ -348,7 +348,7 @@ sensor:
                   then:
                     - select.set_index:
                         id: energy_use_mode # SBU
-                        index: 0
+                        index: 1
         - if:
             condition:
               lambda: |-
@@ -367,7 +367,7 @@ sensor:
                   then:
                     - select.set_index:
                         id: charger_source_priority # OSO
-                        index: 2
+                        index: 3
 
   - platform: modbus_controller
     address: 114
