@@ -315,9 +315,7 @@ sensor:
 
   - platform: template
     name: cond 
-    lambda: |-
-      auto now = id(homeassistant_time).now();
-      return (now.hour);
+    lambda: return id(homeassistant_time).now().strftime("%H:%M:%S"));
       
 #  - platform: modbus_controller
 #    address: 10111
