@@ -1,4 +1,16 @@
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+text_sensor:
+  - platform: template
+    name: "Current hour"
+    id: hour
+    update_interval: 10s
+    lambda: return  id(homeassistant_time).now().strftime("%H");
+
 esphome:
+  name: ${device_name}
   min_version: 2024.11.0
   name_add_mac_suffix: false
   on_boot: 
@@ -36,17 +48,6 @@ light:
     restore_mode: ALWAYS_OFF
     id: indicator
     internal: True
-
-time:
-  - platform: homeassistant
-    id: homeassistant_time
-
-text_sensor:
-  - platform: template
-    name: "Current Time"
-    id: current_time
-    update_interval: 10s
-    lambda: return  id(homeassistant_time).now().strftime("%H%M");
     
 interval:
   - interval: 10s
@@ -314,6 +315,14 @@ binary_sensor:
     lambda: uint16_t warning = id(inverter_error_message_1).state; if (bitRead(warning,10)) { return true; } else { return false; }
 
 sensor:
+  - platform: template
+    name: "Current hour INT"
+    id: hour_int
+    update_interval: 10s
+    lambda: |-
+        std::string hour_str = id(hour).state;      // беремо рядок з text_sensor
+        int hour_val = std::stoi(hour_str);         // конвертуємо в int
+        return hour_val;
   - platform: uptime
     type: seconds
     name: Uptime Sensor
@@ -355,7 +364,7 @@ sensor:
             condition:
               lambda: |-
                 auto now = id(homeassistant_time).now();
-                return ((now.hour >= 23 || now.hour < 7) && id(grid_charge_enabled).state);
+                return ((id(hour_int).state >= 23 || id(hour_int).state < 7) && id(grid_charge_enabled).state);
             then:
               - select.set_index:
                   id: charger_source_priority # CSO
@@ -364,8 +373,8 @@ sensor:
               - if:
                   condition:
                     lambda: |-
-                auto now = id(homeassistant_time).now();
-                   return (now.hour < 23 && now.hour >= 7 && id(grid_charge_enabled).state);
+                      auto now = id(homeassistant_time).now();
+                      return (id(hour_int).state < 23 && id(hour_int).state >= 7 && id(grid_charge_enabled).state);
                   then:
                     - select.set_index:
                         id: charger_source_priority # OSO
@@ -968,4 +977,3 @@ number:
     name: "Arrrow Flags"
     address: 25279
     value_type: U_WORD
-
