@@ -348,7 +348,7 @@ sensor:
                   then:
                     - select.set_index:
                         id: energy_use_mode # SBU
-                        index: 0
+                        index: 1
         - if:
             condition:
               lambda: |-
