@@ -330,32 +330,37 @@ sensor:
     register_type: holding
     id: soc
     on_value:
-      - if:
-          condition:
-            lambda: return (x<id(discharge_margin).state and id(limits_enabled).state);
-          then:
-            - select.set_index:
-                id: energy_use_mode
-                index: 1  # SUB
-          else:
-            if:
-              condition: 
-                lambda: return (x>id(discharge_margin).state+10 and id(limits_enabled).state);
-              then:
-                - select.set_index:
-                    id: energy_use_mode
-                    index: 0  # SBU
-      - if:
-        then:
-          - lambda: |-
-              auto now = id(sntp_time).now();
-              auto options = id(id1).traits.get_options();
-              if ((now.hour >= 23) || (now.hour < 7)) {
-                id(charger_source_priority).publish_state(options[1]); # SNU
-              } else {
-                id(charger_source_priority).publish_state(options[2]); # OSO
-              }
-
+      then:
+        - if:
+            condition:
+              lambda: |-
+                return (x < id(discharge_margin).state && id(limits_enabled).state);
+            then:
+              - select.set_index:
+                  id: energy_use_mode
+                  index: 1
+            else:
+              - if:
+                  condition:
+                    lambda: |-
+                      return (x > id(discharge_margin).state + 10 && id(limits_enabled).state);
+                  then:
+                    - select.set_index:
+                        id: energy_use_mode
+                        index: 0
+        - if:
+            condition:
+              lambda: |-
+                auto now = id(sntp_time).now();
+                return ((now.hour >= 23) || (now.hour < 7));
+            then:
+              - select.set_index:
+                  id: charger_source_priority
+                  index: 1
+            else:
+              - select.set_index:
+                  id: charger_source_priority
+                  index: 2
   - platform: modbus_controller
     address: 114
     name: "State of Health"
