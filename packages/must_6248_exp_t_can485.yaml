@@ -42,9 +42,8 @@ time:
     timezone: Europe/Kyiv
     id: sntp_time
     servers:
-     - 0.pool.ntp.org
-     - 1.pool.ntp.org
-     - 2.pool.ntp.org
+     - 162.159.200.1
+     - 91.236.251.29
      
 interval:
   - interval: 10s
@@ -359,7 +358,8 @@ sensor:
             condition:
               lambda: |-
                 auto now = id(sntp_time).now();
-                return ((now.hour >= 23 || now.hour < 7) && id(grid_charge_enabled).state);
+                int local_hour = (now.hour + 3) % 24;  // Kyiv = UTC+3
+                return ((local_hour >= 23 || local_hour < 7) && id(grid_charge_enabled).state);
             then:
               - select.set_index:
                   id: charger_source_priority # CSO
@@ -369,7 +369,8 @@ sensor:
                   condition:
                     lambda: |-
                       auto now = id(sntp_time).now();
-                      return (now.hour < 23 && now.hour >= 7 && id(grid_charge_enabled).state);
+                   int local_hour = (now.hour + 3) % 24;  // Kyiv = UTC+3
+                   return (local_hour < 23 && local_hour >= 7 && id(grid_charge_enabled).state);
                   then:
                     - select.set_index:
                         id: charger_source_priority # OSO
