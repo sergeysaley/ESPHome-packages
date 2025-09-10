@@ -818,7 +818,7 @@ select:
     id: energy_use_mode
     name: "Energy use mode [01]"
     address: 20109
-    use_write_multiple: true
+#    use_write_multiple: true
     optionsmap:
       "SBU (Solar/battery/utility)": 1
       "SUB (Solar/utility/battery)": 2
@@ -829,7 +829,7 @@ select:
     id: charger_source_priority
     name: "Charger source priority [10]"
     address: 20143
-    use_write_multiple: true
+#    use_write_multiple: true
     optionsmap:
       "CSO (Solar first)": 0        # select index 0
       "SNU (Solar and utility)": 2  # select index 1
@@ -887,7 +887,7 @@ number:
     step: 1
     address: 10111
     value_type: U_WORD
-    use_write_multiple: true
+#    use_write_multiple: true
     lambda: "return x; "
     write_lambda: |-
       return x;
@@ -949,7 +949,7 @@ number:
     min_value: 1
     max_value: 50
     value_type: U_WORD
-    use_write_multiple: true
+#    use_write_multiple: true
     lambda: "return x * 0.1; "
     write_lambda: |-
       return x * 10 ;
@@ -961,7 +961,7 @@ number:
     min_value: 10
     max_value: 120
     value_type: U_WORD
-    use_write_multiple: true
+#    use_write_multiple: true
     lambda: "return x * 0.1; "
     write_lambda: |-
       return x * 10 ;
