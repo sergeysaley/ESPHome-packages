@@ -95,11 +95,6 @@ switch:
     id: grid_charge_enabled
     optimistic: True
     restore_mode: RESTORE_DEFAULT_OFF
-  - platform: template
-    name: "Use night grid charge"
-    id: grid_charge_enabled
-    optimistic: True
-    restore_mode: RESTORE_DEFAULT_OFF
 
 binary_sensor:
   # CE: - Charger Errors from 15213 (id:charger_error_message))
