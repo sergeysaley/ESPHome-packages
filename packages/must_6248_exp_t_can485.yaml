@@ -95,6 +95,11 @@ switch:
     id: grid_charge_enabled
     optimistic: True
     restore_mode: RESTORE_DEFAULT_OFF
+  - platform: template
+    name: "Use night grid charge"
+    id: grid_charge_enabled
+    optimistic: True
+    restore_mode: RESTORE_DEFAULT_OFF
 
 binary_sensor:
   # CE: - Charger Errors from 15213 (id:charger_error_message))
@@ -345,6 +350,7 @@ sensor:
       then:
         - if:
             condition:
+              # if SoC < dm and regulation enabled -> SUB
               lambda: |-
                 return (x < id(discharge_margin).state && id(limits_enabled).state);
             then:
@@ -354,8 +360,18 @@ sensor:
             else:
               - if:
                   condition:
+                  # if SoC > dm + 10 and regulation enabled and grid charge disabled -> SBU
                     lambda: |-
-                      return (x > 80 && id(limits_enabled).state);
+                      return (x > (id(discharge_margin).state + 10) && id(limits_enabled).state && !id(grid_charge_enabled).state);
+                  then:
+                    - select.set_index:
+                        id: energy_use_mode # SBU
+                        index: 0
+              - if:
+                  condition:
+                  # if SoC > 80 and regulation enabled and grid charge enabled -> SBU
+                    lambda: |-
+                      return (x > 80 && id(limits_enabled).state && id(grid_charge_enabled).state);
                   then:
                     - select.set_index:
                         id: energy_use_mode # SBU
