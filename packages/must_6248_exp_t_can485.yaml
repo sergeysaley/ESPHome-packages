@@ -318,7 +318,8 @@ sensor:
   - platform: template
     id: hour_int
     update_interval: 10s
-    internal: true
+    name: "hour"  
+#    internal: true
     lambda: |-
         std::string hour_str = id(hour).state;      // беремо рядок з text_sensor
         int hour_val = std::stoi(hour_str);         // конвертуємо в int
