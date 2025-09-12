@@ -1,10 +1,13 @@
 time:
-  - platform: sntp
-    timezone: Europe/Kyiv
-    servers:
-     - 0.pool.ntp.org
-     - 1.pool.ntp.org
-     - 2.pool.ntp.org
+  - platform: homeassistant
+    id: homeassistant_time
+
+text_sensor:
+  - platform: template
+    id: hour
+    update_interval: 10s
+    internal: true
+    lambda: return  id(homeassistant_time).now().strftime("%H");
 
 interval:
   - interval: 10s
@@ -38,7 +41,11 @@ switch:
     id: limits_enabled
     optimistic: True
     restore_mode: RESTORE_DEFAULT_OFF
-
+  - platform: template
+    name: "Use night grid charge"
+    id: grid_charge_enabled
+    optimistic: True
+    restore_mode: RESTORE_DEFAULT_OFF
 
 binary_sensor:
   # CE: - Charger Errors from 15213 (id:charger_error_message))
@@ -270,7 +277,14 @@ sensor:
 #    name: "Battery Ah"
 #    unit_of_measurement: "Ah"
 #    register_type: holding
-
+  - platform: template
+    id: hour_int
+    update_interval: 10s
+    internal: true
+    lambda: |-
+        std::string hour_str = id(hour).state;      // беремо рядок з text_sensor
+        int hour_val = std::stoi(hour_str);         // конвертуємо в int
+        return hour_val;
   - platform: modbus_controller
     address: 113
     name: "State of Charge"
@@ -278,21 +292,60 @@ sensor:
     register_type: holding
     id: soc
     on_value:
-      - if:
-          condition:
-            lambda: return (x<id(discharge_margin).state and id(limits_enabled).state);
-          then:
-            - select.set_index:
-                id: energy_use_mode
-                index: 1  # SUB
-          else:
-            if:
-              condition: 
-                lambda: return (x>id(discharge_margin).state+10 and id(limits_enabled).state);
-              then:
-                - select.set_index:
-                    id: energy_use_mode
-                    index: 0  # SBU
+      then:
+        - if:
+            condition:
+              # if SoC < dm and regulation enabled -> SUB
+              lambda: |-
+                return (x < id(discharge_margin).state && id(limits_enabled).state);
+            then:
+              - select.set_index:
+                  id: energy_use_mode # SUB
+                  index: 1
+            else:
+              - if:
+                  condition:
+                  # if SoC > dm + 10 and regulation enabled and grid charge disabled -> SBU
+                    lambda: |-
+                      return (x > (id(discharge_margin).state + 10) && id(limits_enabled).state && !id(grid_charge_enabled).state);
+                  then:
+                    - select.set_index:
+                        id: energy_use_mode # SBU
+                        index: 0
+              - if:
+                  condition:
+                  # if SoC > 80 and regulation enabled and grid charge enabled -> SBU
+                    lambda: |-
+                      return (x > 80 && id(limits_enabled).state && id(grid_charge_enabled).state);
+                  then:
+                    - select.set_index:
+                        id: energy_use_mode # SBU
+                        index: 0
+        - if:
+            condition:
+              lambda: |-
+                auto now = id(homeassistant_time).now();
+                return (x < id(discharge_margin).state && (id(hour_int).state >= 23 || id(hour_int).state < 7) && id(grid_charge_enabled).state);
+            then:
+              - select.set_index:
+                  id: charger_source_priority # CSO
+                  index: 0
+              - select.set_index:
+                  id: energy_use_mode # SUB
+                  index: 1
+            else:
+              - if:
+                  condition:
+                    lambda: |-
+                      auto now = id(homeassistant_time).now();
+                      return (id(hour_int).state < 23 && id(hour_int).state >= 7 && id(grid_charge_enabled).state);
+                  then:
+                    - select.set_index:
+                        id: charger_source_priority # OSO
+                        index: 2
+                    - select.set_index:
+                        id: energy_use_mode # SBU
+                        index: 0
 
   - platform: modbus_controller
     address: 114
