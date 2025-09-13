@@ -377,11 +377,11 @@ sensor:
                 return (x < id(discharge_margin).state && (id(hour_int).state >= 23 || id(hour_int).state < 7) && id(grid_charge_enabled).state);
             then:
               - select.set_index:
-                  id: charger_source_priority # CSO
-                  index: 0
-              - select.set_index:
-                  id: energy_use_mode # SUB
+                  id: charger_source_priority # SNU
                   index: 1
+#              - select.set_index:
+#                  id: energy_use_mode # SUB
+#                  index: 1
             else:
               - if:
                   condition:
