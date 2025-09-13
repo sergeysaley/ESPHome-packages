@@ -374,7 +374,6 @@ sensor:
         - if:
             condition:
               lambda: |-
-                auto now = id(homeassistant_time).now();
                 return (x < id(discharge_margin).state && (id(hour_int).state >= 23 || id(hour_int).state < 7) && id(grid_charge_enabled).state);
             then:
               - select.set_index:
@@ -387,15 +386,14 @@ sensor:
               - if:
                   condition:
                     lambda: |-
-                      auto now = id(homeassistant_time).now();
                       return (id(hour_int).state < 23 && id(hour_int).state >= 7 && id(grid_charge_enabled).state);
                   then:
                     - select.set_index:
                         id: charger_source_priority # OSO
                         index: 2
-                    - select.set_index:
-                        id: energy_use_mode # SBU
-                        index: 0
+#                    - select.set_index:
+#                        id: energy_use_mode # SBU
+#                        index: 0
 
   - platform: modbus_controller
     address: 114
