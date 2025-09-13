@@ -341,9 +341,9 @@ sensor:
                     - select.set_index:
                         id: charger_source_priority # OSO
                         index: 2
-                    - select.set_index:
-                        id: energy_use_mode # SBU
-                        index: 0
+#                    - select.set_index:
+#                        id: energy_use_mode # SBU
+#                        index: 0
 
   - platform: modbus_controller
     address: 114
