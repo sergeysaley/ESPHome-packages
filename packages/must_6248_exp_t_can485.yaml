@@ -374,14 +374,11 @@ sensor:
         - if:
             condition:
               lambda: |-
-                return (x < id(discharge_margin).state && (id(hour_int).state >= 23 || id(hour_int).state < 7) && id(grid_charge_enabled).state);
+                return ((id(hour_int).state >= 23 || id(hour_int).state < 7) && id(grid_charge_enabled).state);
             then:
               - select.set_index:
                   id: charger_source_priority # SNU
                   index: 1
-#              - select.set_index:
-#                  id: energy_use_mode # SUB
-#                  index: 1
             else:
               - if:
                   condition:
@@ -391,9 +388,6 @@ sensor:
                     - select.set_index:
                         id: charger_source_priority # OSO
                         index: 2
-#                    - select.set_index:
-#                        id: energy_use_mode # SBU
-#                        index: 0
 
   - platform: modbus_controller
     address: 114
