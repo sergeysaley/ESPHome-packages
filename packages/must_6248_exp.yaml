@@ -324,7 +324,6 @@ sensor:
         - if:
             condition:
               lambda: |-
-                auto now = id(homeassistant_time).now();
                 return (x < id(discharge_margin).state && (id(hour_int).state >= 23 || id(hour_int).state < 7) && id(grid_charge_enabled).state);
             then:
               - select.set_index:
@@ -337,7 +336,6 @@ sensor:
               - if:
                   condition:
                     lambda: |-
-                      auto now = id(homeassistant_time).now();
                       return (id(hour_int).state < 23 && id(hour_int).state >= 7 && id(grid_charge_enabled).state);
                   then:
                     - select.set_index:
