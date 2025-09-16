@@ -314,7 +314,7 @@ sensor:
                         index: 0
               - if:
                   condition:
-                  # if SoC > 80 and regulation enabled and grid charge enabled -> SBU
+                  # if SoC > grid_night_charge_number and regulation enabled and grid charge enabled -> SBU
                     lambda: |-
                       return (x > id(grid_night_charge_margin).state && id(limits_enabled).state && id(grid_charge_enabled).state);
                   then:
