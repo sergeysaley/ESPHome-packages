@@ -875,17 +875,6 @@ number:
     restore_value: true
 #    mode: box
 
-number:
-  - platform: template
-    name: "Grid charge margin"
-    id: grid_charge_margin
-    unit_of_measurement: "%"
-    min_value: 50
-    max_value: 95
-    initial_value: 75
-    step: 1
-    optimistic: true
-    restore_value: true
 #    mode: box
 
 #  - platform: template
