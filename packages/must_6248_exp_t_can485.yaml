@@ -366,7 +366,7 @@ sensor:
                   condition:
                   # if SoC > 80 and regulation enabled and grid charge enabled -> SBU
                     lambda: |-
-                      return (x > 80 && id(limits_enabled).state && id(grid_charge_enabled).state);
+                      return (x > id(grid_night_charge_number).state && id(limits_enabled).state && id(grid_charge_enabled).state);
                   then:
                     - select.set_index:
                         id: energy_use_mode # SBU
@@ -873,10 +873,17 @@ number:
     step: 1
     optimistic: true
     restore_value: true
-#    mode: box
-
-#    mode: box
-
+  - platform: template
+    name: "Grid night charge margin"
+    id: grid_night_charge_margin
+    unit_of_measurement: "%"
+    min_value: 50
+    max_value: 95
+    initial_value: 75
+    step: 1
+    optimistic: true
+    restore_value: true
+    
 #  - platform: template
 #    name: "INV Disable grid charge"
 #    id: inv_grid_chg_stop
