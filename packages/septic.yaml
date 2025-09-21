@@ -11,9 +11,9 @@ i2c:
 sensor:
   - platform: vl53l1x_sensor
     name: Distance    
-    distance_mode: LONG
+    distance_mode: MEDIUM
     signal_threshold: 512
-    timing_budget: 200ms
+    timing_budget: 500ms
     update_interval: 15s
     accuracy_decimals: 3
     roi_center: 199
