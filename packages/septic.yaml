@@ -13,7 +13,7 @@ sensor:
     name: Distance    
     distance_mode: LONG
     signal_threshold: 512
-    timing_budget: 400ms
+    timing_budget: 200ms
     update_interval: 15s
     accuracy_decimals: 3
     roi_center: 199
