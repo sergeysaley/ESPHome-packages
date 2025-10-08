@@ -371,16 +371,6 @@ sensor:
                     - select.set_index:
                         id: energy_use_mode # SBU
                         index: 0
-#                  else:
-#                    - if:
-#                        condition:
-#                        #  if regulation enabled
-#                          lambda: |-
-#                           return (id(limits_enabled).state);
-#                        then:
-#                          - select.set_index:
-#                              id: energy_use_mode # SUB
-#                              index: 1
         - if:
             condition:
               lambda: |-
