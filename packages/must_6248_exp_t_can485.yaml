@@ -316,6 +316,13 @@ binary_sensor:
     lambda: uint16_t warning = id(inverter_error_message_1).state; return (warning & (1 << 10)) != 0;
 sensor:
   - platform: template
+    name: "Device Free RAM"
+    unit_of_measurement: "kB"
+    accuracy_decimals: 0
+    update_interval: 60s
+    lambda: |-
+      return (float) (esp_get_free_heap_size() / 1024.0);
+  - platform: template
     id: hour_int
     update_interval: 10s
     internal: true
