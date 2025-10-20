@@ -109,7 +109,7 @@ switch:
 
 binary_sensor:
   # CE: - Charger Errors from 15213 (id:charger_error_message))
-- platform: template
+  - platform: template
     name: "CE: Charger hardware protection"
     lambda: uint16_t error = id(charger_error_message).state; return (error & (1 << 0)) != 0;
 
