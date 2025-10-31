@@ -330,6 +330,15 @@ sensor:
         std::string hour_str = id(hour).state;      // беремо рядок з text_sensor
         int hour_val = std::stoi(hour_str);         // конвертуємо в int
         return hour_val;
+  - platform: template
+    name: minutes
+    id: minute_int
+    update_interval: 10s
+#    internal: true
+    lambda: |-
+        std::string minute_str = id(minute).state;      // беремо рядок з text_sensor
+        int minute_val = std::stoi(minute_str);         // конвертуємо в int
+        return minute_val;
   - platform: uptime
     type: seconds
     name: Uptime Sensor
