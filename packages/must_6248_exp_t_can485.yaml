@@ -328,22 +328,15 @@ sensor:
     lambda: |-
       return (float) (esp_get_free_heap_size() / 1024.0);
   - platform: template
-    id: hour_int
+    id: minutes_now
     update_interval: 10s
     internal: true
     lambda: |-
-        std::string hour_str = id(hour).state;      // беремо рядок з text_sensor
-        int hour_val = std::stoi(hour_str);         // конвертуємо в int
-        return hour_val;
-  - platform: template
-    name: minutes
-    id: minute_int
-    update_interval: 10s
-#    internal: true
-    lambda: |-
-        std::string minute_str = id(minute).state;      // беремо рядок з text_sensor
-        int minute_val = std::stoi(minute_str);         // конвертуємо в int
-        return minute_val;
+        std::string hour_str = id(hour).state;      
+        std::string minute_str = id(minute).state;
+        int hour_val = std::stoi(hour_str);
+        int minute_val = std::stoi(minute_str);   
+        return ((hour_val * 60) + minute_val);
   - platform: uptime
     type: seconds
     name: Uptime Sensor
@@ -395,7 +388,7 @@ sensor:
         - if:
             condition:
               lambda: |-
-                return ((id(hour_int).state >= 23 || id(hour_int).state < 7) && id(grid_charge_enabled).state);
+                return ((id(minutes_now).state > 630 && id(minutes_now).state < 1110) && id(grid_charge_enabled).state);
             then:
               - select.set_index:
                   id: charger_source_priority # SNU
@@ -403,8 +396,8 @@ sensor:
             else:
               - if:
                   condition:
-                    lambda: |-
-                      return (id(hour_int).state < 23 && id(hour_int).state >= 7 && id(grid_charge_enabled).state);
+                    lambda: |
+                      return ((id(minutes_now).state < 630 || id(minutes_now).state > 1110) && id(grid_charge_enabled).state);
                   then:
                     - select.set_index:
                         id: charger_source_priority # OSO
