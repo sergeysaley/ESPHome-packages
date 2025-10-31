@@ -8,6 +8,11 @@ text_sensor:
     update_interval: 10s
     internal: true
     lambda: return  id(homeassistant_time).now().strftime("%H");
+  - platform: template
+    id: minute
+    update_interval: 10s
+    internal: true
+    lambda: return  id(homeassistant_time).now().strftime("%M");
 
 esphome:
   name: ${device_name}
