@@ -364,8 +364,8 @@ sensor:
                 return (x < id(discharge_margin).state && id(limits_enabled).state);
             then:
               - select.set_index:
-                  id: energy_use_mode # SUB
-                  index: 1
+                  id: energy_use_mode # UTI
+                  index: 2
             else:
               - if:
                   condition:
