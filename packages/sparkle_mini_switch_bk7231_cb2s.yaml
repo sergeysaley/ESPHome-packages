@@ -1,4 +1,4 @@
-ce# esphome + libretiny config for Sparkle MMinii Switch (bk7231, cb2s)
+# esphome + libretiny config for Sparkle MMinii Switch (bk7231, cb2s)
 light:
   - platform: binary
     id: status_led
