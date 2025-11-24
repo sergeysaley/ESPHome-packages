@@ -25,3 +25,10 @@ binary_sensor:
     name: "${name} Button"
     on_press:
       - switch.toggle: relay_main   
+
+output:
+  - platform: gpio
+    pin:
+      number: 6
+      inverted: true
+    id: led_out
