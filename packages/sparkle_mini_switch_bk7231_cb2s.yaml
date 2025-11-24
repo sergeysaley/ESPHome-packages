@@ -1,13 +1,13 @@
-# esphome + libretiny config for Sparkle MMinii Switch (bk7231, cb2s)
+ce# esphome + libretiny config for Sparkle MMinii Switch (bk7231, cb2s)
 light:
   - platform: binary
     id: status_led
-    name: "${name} Led"
+    name: "${device_name} Led"
     output: led_out
 
 switch:
   - platform: gpio
-    name: "${name} Relay"
+    name: "${device_name} Relay"
     pin: 24
     id: relay_main
     on_turn_on:
@@ -22,7 +22,7 @@ binary_sensor:
       mode: INPUT_PULLUP
       inverted: true
     id: button_input
-    name: "${name} Button"
+    name: "${device_name} Button"
     on_press:
       - switch.toggle: relay_main   
 
