@@ -1,17 +1,22 @@
+
 output:
-  - platform: ledc
+  - platform: libretiny_pwm
     id: red_output
     pin: 8        # PWM1
-  - platform: ledc
+
+  - platform: libretiny_pwm
     id: green_output
     pin: 24       # PWM2
-  - platform: ledc
+
+  - platform: libretiny_pwm
     id: blue_output
     pin: 26       # PWM3
-  - platform: ledc
+
+  - platform: libretiny_pwm
     id: cold_output
     pin: 7        # PWM4
-  - platform: ledc
+
+  - platform: libretiny_pwm
     id: warm_output
     pin: 6        # PWM5
 
@@ -26,4 +31,3 @@ light:
     cold_white_color_temperature: 6500 K
     warm_white_color_temperature: 2700 K
     constant_brightness: true
-
