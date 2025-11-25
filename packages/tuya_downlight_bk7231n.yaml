@@ -1,0 +1,29 @@
+output:
+  - platform: ledc
+    id: red_output
+    pin: 8        # PWM1
+  - platform: ledc
+    id: green_output
+    pin: 24       # PWM2
+  - platform: ledc
+    id: blue_output
+    pin: 26       # PWM3
+  - platform: ledc
+    id: cold_output
+    pin: 7        # PWM4
+  - platform: ledc
+    id: warm_output
+    pin: 6        # PWM5
+
+light:
+  - platform: rgbww
+    name: "Ceiling LED"
+    red: red_output
+    green: green_output
+    blue: blue_output
+    cold_white: cold_output
+    warm_white: warm_output
+    cold_white_color_temperature: 6500 K
+    warm_white_color_temperature: 2700 K
+    constant_brightness: true
+
