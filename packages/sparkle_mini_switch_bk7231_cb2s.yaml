@@ -23,7 +23,6 @@ binary_sensor:
       inverted: true
     id: button_input
     name: "Button"
-    internal: true
     on_press:
       - switch.toggle: relay_main   
 
@@ -33,4 +32,4 @@ output:
       number: 6
       inverted: true
     id: led_out
-    internal: true
+
