@@ -16,7 +16,17 @@ switch:
       - select.set: 
           id: state
           option: "Off"
-      
+
+light:
+  - platform: esp32_rmt_led_strip
+    rgb_order: GRB
+    pin: GPIO4
+    num_leds: 1
+    chipset: ws2812
+    restore_mode: ALWAYS_OFF
+    id: indicator
+    internal: true
+
 uart:
   id: mod_bus
   tx_pin: ${gree_tx_pin}
