@@ -46,6 +46,15 @@ modbus_controller:
     address: 0x2
     setup_priority: -10
     update_interval: 3s
+    on_command_sent:
+      then:
+        - light.turn_on: 
+            id: indicator
+            flash_length: 0.1s
+            brightness: 50%
+            red: 100%
+            green: 0%
+            blue: 0%
 
 select:
   - platform: modbus_controller
