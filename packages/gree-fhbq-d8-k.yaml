@@ -3,7 +3,7 @@ switch:
     name: "State"
     icon: "mdi:power"
     lambda: |-
-      if (id(state).state == "On") {
+      if (id(state).current_option() == "On") {
         return true;
       } else {
         return false;
