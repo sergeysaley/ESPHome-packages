@@ -388,7 +388,7 @@ sensor:
         - if:
             condition:
               lambda: |-
-                return ((id(minutes_now).state > 630 && id(minutes_now).state < 1110) && id(grid_charge_enabled).state);
+                return ((id(minutes_now).state > 1380 || id(minutes_now).state < 420) && id(grid_charge_enabled).state);
             then:
               - select.set_index:
                   id: charger_source_priority # SNU
@@ -397,7 +397,7 @@ sensor:
               - if:
                   condition:
                     lambda: |
-                      return ((id(minutes_now).state < 630 || id(minutes_now).state > 1110) && id(grid_charge_enabled).state);
+                      return ((id(minutes_now).state > 420 && id(minutes_now).state < 1380) && id(grid_charge_enabled).state);
                   then:
                     - select.set_index:
                         id: charger_source_priority # OSO
