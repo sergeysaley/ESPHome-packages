@@ -1,4 +1,4 @@
-# На GitHub: packages/lvgl/ring-tile-card.yaml
+# packages/lvgl/ring-tile-card.yaml
 lvgl:
   pages:
     - id: main_page
@@ -9,7 +9,8 @@ lvgl:
             y: ${y_pos}
             width: 150
             height: 180
-            bg_color: 0x222222  # Властивості тепер часто пишуться прямо
+            # Властивості об'єкта тепер пишемо прямо тут
+            bg_color: 0x222222
             radius: 12
             border_width: 1
             border_color: 0x333333
@@ -20,19 +21,20 @@ lvgl:
                   height: 110
                   align: TOP_MID
                   y: 10
+                  # Нові назви параметрів діапазону
                   min_value: 0
                   max_value: 100
                   value: 0
-                  # Налаштування кутів для "розірваного" кільця
+                  # Налаштування кутів (135° старт, 45° фініш створює розрив знизу)
                   bg_start_angle: 135
                   bg_end_angle: 45
                   styles:
-                    - part: indicator
-                      arc_color: ${color}
-                      arc_width: 8
                     - part: main
-                      arc_color: 0x333333
                       arc_width: 8
+                      arc_color: 0x333333
+                    - part: indicator
+                      arc_width: 8
+                      arc_color: ${color}
                     - part: knob
                       bg_opa: 0
 
@@ -41,12 +43,12 @@ lvgl:
                   text: "---"
                   align: CENTER
                   y: -15
-                  text_color: 0xFFFFFF
                   text_font: montserrat_20
+                  text_color: 0xFFFFFF
 
               - label:
                   text: ${title}
                   align: BOTTOM_MID
                   y: -10
-                  text_color: 0xAAAAAA
                   text_font: montserrat_14
+                  text_color: 0xAAAAAA
