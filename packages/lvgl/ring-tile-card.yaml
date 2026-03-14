@@ -1,47 +1,48 @@
 # На GitHub: packages/lvgl/ring-tile-card.yaml
 lvgl:
-      widgets:
-        - obj:
-            id: ${id_prefix}_card
-            x: ${x_pos}
-            y: ${y_pos}
-            width: 150
-            height: 180
-            bg_color: 0x222222
-            radius: 12
-            border_width: 1
-            border_color: 0x333333
-            widgets:
-              - arc:
-                  id: ${id_prefix}_arc
-                  width: 110
-                  height: 110
-                  align: TOP_MID
-                  y: 10
-                  min_value: 0
-                  max_value: 100
-                  value: 0
-                  start_angle: 135
-                  end_angle: 45
-                  arc_width: 8
-                  arc_color: 0x333333
-                  indicator:
-                    arc_width: 8
-                    arc_color: ${color}
-                  knob:
-                    bg_opa: 0
+  widgets: # Використовуємо пряме додавання віджетів
+    - obj:
+        id: ${id_prefix}_card
+        parent: main_page # Явно вказуємо, куди додати цю картку
+        x: ${x_pos}
+        y: ${y_pos}
+        width: 150
+        height: 180
+        bg_color: 0x222222
+        radius: 12
+        border_width: 1
+        border_color: 0x333333
+        widgets:
+          - arc:
+              id: ${id_prefix}_arc
+              width: 110
+              height: 110
+              align: TOP_MID
+              y: 10
+              min_value: 0
+              max_value: 100
+              value: 0
+              start_angle: 135
+              end_angle: 45
+              arc_width: 8
+              arc_color: 0x333333
+              indicator:
+                arc_width: 8
+                arc_color: ${color}
+              knob:
+                bg_opa: 0
 
-              - label:
-                  id: ${id_prefix}_val_text
-                  text: "---"
-                  align: CENTER
-                  y: -15
-                  text_font: montserrat_20
-                  text_color: 0xFFFFFF
+          - label:
+              id: ${id_prefix}_val_text
+              text: "---"
+              align: CENTER
+              y: -15
+              text_font: montserrat_20
+              text_color: 0xFFFFFF
 
-              - label:
-                  text: ${title}
-                  align: BOTTOM_MID
-                  y: -10
-                  text_font: montserrat_14
-                  text_color: 0xAAAAAA
+          - label:
+              text: ${title}
+              align: BOTTOM_MID
+              y: -10
+              text_font: montserrat_14
+              text_color: 0xAAAAAA
