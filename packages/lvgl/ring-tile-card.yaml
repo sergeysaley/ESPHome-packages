@@ -2,7 +2,7 @@
 #lvgl:
 #  pages:
 #    - id: main_page
-#      widgets:
+      widgets:
         - obj:
             id: ${id_prefix}_card
             x: ${x_pos}
