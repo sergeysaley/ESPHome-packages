@@ -9,11 +9,10 @@ lvgl:
             y: ${y_pos}
             width: 150
             height: 180
-            styles:
-              - bg_color: 0x222222
-                radius: 12
-                border_width: 1
-                border_color: 0x333333
+            bg_color: 0x222222  # Властивості тепер часто пишуться прямо
+            radius: 12
+            border_width: 1
+            border_color: 0x333333
             widgets:
               - arc:
                   id: ${id_prefix}_arc
@@ -21,31 +20,33 @@ lvgl:
                   height: 110
                   align: TOP_MID
                   y: 10
-                  range_from: 0
-                  range_to: 100
-                  rotation: 135
-                  bg_angle_range: 270
+                  min_value: 0
+                  max_value: 100
+                  value: 0
+                  # Налаштування кутів для "розірваного" кільця
+                  bg_start_angle: 135
+                  bg_end_angle: 45
                   styles:
-                    - part: MAIN
-                      arc_width: 8
-                      arc_color: 0x333333
-                    - part: INDICATOR
-                      arc_width: 8
+                    - part: indicator
                       arc_color: ${color}
-                    - part: KNOB
+                      arc_width: 8
+                    - part: main
+                      arc_color: 0x333333
+                      arc_width: 8
+                    - part: knob
                       bg_opa: 0
+
               - label:
                   id: ${id_prefix}_val_text
                   text: "---"
                   align: CENTER
                   y: -15
-                  styles:
-                    - text_font: montserrat_20
-                      text_color: 0xFFFFFF
+                  text_color: 0xFFFFFF
+                  text_font: montserrat_20
+
               - label:
                   text: ${title}
                   align: BOTTOM_MID
                   y: -10
-                  styles:
-                    - text_font: montserrat_14
-                      text_color: 0xAAAAAA
+                  text_color: 0xAAAAAA
+                  text_font: montserrat_14
