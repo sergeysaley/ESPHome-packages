@@ -1,8 +1,8 @@
 # На GitHub: packages/lvgl/ring-tile-card.yaml
-#lvgl:
-#  pages:
-#    - id: main_page
-#      widgets:
+lvgl:
+  pages:
+    - id: main_page
+      widgets:
         - obj:
             id: ${id_prefix}_card
             x: ${x_pos}
@@ -25,14 +25,11 @@
                   value: 0
                   start_angle: 135
                   end_angle: 45
-                  # Основна дуга
                   arc_width: 8
                   arc_color: 0x333333
-                  # Блок індикатора (прогрес-бару)
                   indicator:
                     arc_width: 8
                     arc_color: ${color}
-                  # Блок ручки (knob) - робимо її прозорою
                   knob:
                     bg_opa: 0
 
