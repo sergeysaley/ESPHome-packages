@@ -1,7 +1,5 @@
 # На GitHub: packages/lvgl/ring-tile-card.yaml
 lvgl:
-  pages:
-    - id: main_page
       widgets:
         - obj:
             id: ${id_prefix}_card
