@@ -25,16 +25,13 @@ lvgl:
                   value: 0
                   start_angle: 135
                   end_angle: 45
-                  # НОВИЙ ФОРМАТ СТИЛІВ:
-                  # Спробуємо передати властивості частин безпосередньо в блок styles
-                  styles:
-                    - arc_width: 8
-                      arc_color: 0x333333
-                    - part: indicator
-                      arc_width: 8
-                      arc_color: ${color}
-                    - part: knob
-                      bg_opa: 0
+                  # Прямі налаштування без блоку styles
+                  arc_width: 8
+                  arc_color: 0x333333
+                  # Для індикатора та ручки використовуємо префікси
+                  indicator_arc_width: 8
+                  indicator_arc_color: ${color}
+                  knob_bg_opa: 0
 
               - label:
                   id: ${id_prefix}_val_text
