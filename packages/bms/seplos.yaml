@@ -14,7 +14,7 @@ text_sensor:
   - platform: seplos_bms_ble
     seplos_bms_ble_id: ${prefix}
     software_version:
-      name: "bms0 software version"
+      name: "${prefix} software version"
     device_model:
       name: "${prefix} device model"
     hardware_version:
