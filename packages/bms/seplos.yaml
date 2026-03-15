@@ -11,13 +11,6 @@ seplos_bms_ble:
     update_interval: 60s
 
 sensor:
-  - platform: template
-    name: "Device Free RAM"
-    unit_of_measurement: "kB"
-    accuracy_decimals: 0
-    update_interval: 60s
-    lambda: |-
-      return (float) (esp_get_free_heap_size() / 1024.0);
   - platform: seplos_bms_ble
     seplos_bms_ble_id: ${prefix}
     alarm_event1_bitmask:
