@@ -3,7 +3,7 @@
 
 ble_client:
   - mac_address: ${mac_address}
-    id: ${prefiix}_client
+    id: ${prefix}_client
 
 seplos_bms_ble:
   - ble_client_id: ${prefix}_client
