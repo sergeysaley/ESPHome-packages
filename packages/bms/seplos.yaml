@@ -8,7 +8,7 @@ ble_client:
 seplos_bms_ble:
   - ble_client_id: ${prefix}_client
     id: ${prefix}
-    update_interval: 60s
+    update_interval: ${interval}s
 
 text_sensor:
   - platform: seplos_bms_ble
