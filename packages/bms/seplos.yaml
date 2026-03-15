@@ -1,6 +1,18 @@
+#packages:
+#  bms0:
+#    url: https://github.com/sergeysaley/ESPHome-packages
+#    files:
+#      - path: packages/bms/seplos.yaml
+#        vars:
+#          mac_address: "60:6E:41:1D:C7:67"
+#          prefix: "bms0"
+#          interval: 30
+#    ref: main
+#    refresh: 0s
+#
 # mac_address
 # prefix
-
+# interval
 ble_client:
   - mac_address: ${mac_address}
     id: ${prefix}_client
