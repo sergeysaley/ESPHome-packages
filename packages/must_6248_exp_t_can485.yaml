@@ -330,11 +330,6 @@ sensor:
         int hour_val = std::stoi(hour_str);
         int minute_val = std::stoi(minute_str);   
         return ((hour_val * 60) + minute_val);
-  - platform: uptime
-    type: seconds
-    name: Uptime Sensor
-    id: uptime_sensor
-    update_interval: 5s
       
 #  - platform: modbus_controller
 #    address: 10111
