@@ -1,3 +1,8 @@
+esphome:
+  name: ${device_name}
+  comment: ${device_location}
+  name_add_mac_suffix: false
+
 # Enable logging
 logger:
 
