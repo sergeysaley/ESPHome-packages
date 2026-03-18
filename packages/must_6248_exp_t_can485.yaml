@@ -362,8 +362,8 @@ sensor:
                       return (x > (id(discharge_margin).state + 10) && id(limits_enabled).state && !id(grid_charge_enabled).state);
                   then:
                     - select.set_index:
-                        id: energy_use_mode # SBU
-                        index: 0
+                        id: energy_use_mode # SOL
+                        index: 3
               - if:
                   condition:
                   # if SoC > grid_night_charge_number and regulation enabled and grid charge enabled -> SBU
@@ -371,8 +371,8 @@ sensor:
                       return (x > id(grid_night_charge_margin).state && id(limits_enabled).state && id(grid_charge_enabled).state);
                   then:
                     - select.set_index:
-                        id: energy_use_mode # SBU
-                        index: 0
+                        id: energy_use_mode # SOL
+                        index: 3
         - if:
             condition:
               lambda: |-
