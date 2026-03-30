@@ -320,17 +320,17 @@ binary_sensor:
     name: "IW: PV charger communication error"
     lambda: uint16_t warning = id(inverter_error_message_1).state; return (warning & (1 << 10)) != 0;
 sensor:
-  - platform: template
+- platform: template
     id: minutes_now
     update_interval: 10s
     internal: true
+    unit_of_measurement: "min"
     lambda: |-
-        std::string hour_str = id(hour).state;      
-        std::string minute_str = id(minute).state;
-        int hour_val = std::stoi(hour_str);
-        int minute_val = std::stoi(minute_str);   
-        return ((hour_val * 60) + minute_val);
-      
+      auto now = id(homeassistant_time).now();
+      if (!now.is_valid()) {
+        return NAN; 
+      }
+      return (now.hour * 60) + now.minute;      
 #  - platform: modbus_controller
 #    address: 10111
 #    name: "Battery Ah"
