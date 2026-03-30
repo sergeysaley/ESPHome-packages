@@ -320,7 +320,7 @@ binary_sensor:
     name: "IW: PV charger communication error"
     lambda: uint16_t warning = id(inverter_error_message_1).state; return (warning & (1 << 10)) != 0;
 sensor:
-- platform: template
+  - platform: template
     id: minutes_now
     update_interval: 10s
     internal: true
