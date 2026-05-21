@@ -90,18 +90,6 @@ modbus_controller:
             green: 0%
             blue: 0%
        
-switch:
-  - platform: template
-    name: "Use customer limits for battery discharge"
-    id: limits_enabled
-    optimistic: True
-    restore_mode: RESTORE_DEFAULT_OFF
-  - platform: template
-    name: "Use night grid charge"
-    id: grid_charge_enabled
-    optimistic: True
-    restore_mode: RESTORE_DEFAULT_OFF
-
 binary_sensor:
   # CE: - Charger Errors from 15213 (id:charger_error_message))
   - platform: template
@@ -320,17 +308,6 @@ binary_sensor:
     name: "IW: PV charger communication error"
     lambda: uint16_t warning = id(inverter_error_message_1).state; return (warning & (1 << 10)) != 0;
 sensor:
-  - platform: template
-    id: minutes_now
-    update_interval: 10s
-    internal: true
-    unit_of_measurement: "min"
-    lambda: |-
-      auto now = id(homeassistant_time).now();
-      if (!now.is_valid()) {
-        return NAN; 
-      }
-      return (now.hour * 60) + now.minute;      
 #  - platform: modbus_controller
 #    address: 10111
 #    name: "Battery Ah"
@@ -343,53 +320,6 @@ sensor:
     unit_of_measurement: "%"
     register_type: holding
     id: soc
-    on_value:
-      then:
-        - if:
-            condition:
-              # if SoC < dm and regulation enabled -> SUB
-              lambda: |-
-                return (x < id(discharge_margin).state && id(limits_enabled).state);
-            then:
-              - select.set_index:
-                  id: energy_use_mode # UTI
-                  index: 2
-            else:
-              - if:
-                  condition:
-                  # if SoC > dm + 10 and regulation enabled and grid charge disabled -> SBU
-                    lambda: |-
-                      return (x > (id(discharge_margin).state + 10) && id(limits_enabled).state && !id(grid_charge_enabled).state);
-                  then:
-                    - select.set_index:
-                        id: energy_use_mode # SOL
-                        index: 3
-              - if:
-                  condition:
-                  # if SoC > grid_night_charge_number and regulation enabled and grid charge enabled -> SBU
-                    lambda: |-
-                      return (x > id(grid_night_charge_margin).state && id(limits_enabled).state && id(grid_charge_enabled).state);
-                  then:
-                    - select.set_index:
-                        id: energy_use_mode # SOL
-                        index: 3
-        - if:
-            condition:
-              lambda: |-
-                return ((id(minutes_now).state > 1380 || id(minutes_now).state < 420) && id(grid_charge_enabled).state);
-            then:
-              - select.set_index:
-                  id: charger_source_priority # SNU
-                  index: 1
-            else:
-              - if:
-                  condition:
-                    lambda: |
-                      return ((id(minutes_now).state > 420 && id(minutes_now).state < 1380) && id(grid_charge_enabled).state);
-                  then:
-                    - select.set_index:
-                        id: charger_source_priority # OSO
-                        index: 2
 
   - platform: modbus_controller
     address: 114
@@ -413,56 +343,6 @@ sensor:
     name: "Charging state"
     id: charging_state
     register_type: holding
-
-  - platform: modbus_controller
-    id: inverter_error_message_1
-    address: 25261
-#    name: "Inverter Error message 1"
-    register_type: holding
-    internal: true
-
-  - platform: modbus_controller
-    id: inverter_error_message_2
-    address: 25262
-#    name: "Inverter Error message 2"
-    register_type: holding
-    internal: true
-
-  - platform: modbus_controller
-    id: inverter_error_message_3
-    address: 25263
-#    name: "Inverter Error message 3"
-    register_type: holding
-    internal: true
-
-  - platform: modbus_controller
-    id: inverter_warning_message_1
-    address: 25265
-#    name: "Inverter Warning message 1"
-    register_type: holding
-    internal: true
-
-  - platform: modbus_controller
-    id: inverter_warning_message_2
-    address: 25266
-#    name: "Inverter Warning message 2"
-    register_type: holding
-    internal: true
-
-  - platform: modbus_controller
-    id: charger_error_message
-    address: 15213
-    bitmask: 0x3ff 
-#    name: "Charger Error message"
-    register_type: holding
-    internal: true
-
-  - platform: modbus_controller
-    id: charger_warning_message
-    address: 15214
-#    name: "Charger Warning message"
-    register_type: holding
-    internal: true
 
   - platform: modbus_controller
     address: 15205
@@ -536,6 +416,7 @@ sensor:
     address: 15211
     register_type: holding
     name: "Battery Relay"
+
   - platform: modbus_controller
     address: 15212
     register_type: holding
@@ -855,26 +736,6 @@ select:
       "BLU (Battery, Load, Utility)": 1        # select index 1
 
 number:
-  - platform: template
-    name: "Discharge margin"
-    id: discharge_margin
-    unit_of_measurement: "%"
-    min_value: 25
-    max_value: 85
-    initial_value: 66
-    step: 1
-    optimistic: true
-    restore_value: true
-  - platform: template
-    name: "Grid night charge margin"
-    id: grid_night_charge_margin
-    unit_of_measurement: "%"
-    min_value: 50
-    max_value: 95
-    initial_value: 75
-    step: 1
-    optimistic: true
-    restore_value: true
     
 #  - platform: template
 #    name: "INV Disable grid charge"
@@ -986,14 +847,3 @@ number:
     write_lambda: |-
       return x * 10 ;
 
-  - platform: modbus_controller
-    id: system_settings
-    name: "System Settings"
-    address: 20142
-    value_type: U_WORD
-
-  - platform: modbus_controller
-    id: arrow_flags
-    name: "Arrrow Flags"
-    address: 25279
-    value_type: U_WORD
