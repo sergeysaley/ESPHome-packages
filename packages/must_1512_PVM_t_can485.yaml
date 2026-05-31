@@ -581,7 +581,7 @@ number:
     unit_of_measurement: "A"
     address: 20125
     min_value: 1
-    max_value: 50
+    max_value: 10
     value_type: U_WORD
 #    use_write_multiple: true
     lambda: "return x * 0.1; "
@@ -593,7 +593,7 @@ number:
     unit_of_measurement: "A"
     address: 20132
     min_value: 10
-    max_value: 120
+    max_value: 60
     value_type: U_WORD
 #    use_write_multiple: true
     lambda: "return x * 0.1; "
