@@ -273,13 +273,14 @@ sensor:
 #    name: "Battery Ah"
 #    unit_of_measurement: "Ah"
 #    register_type: holding
-- platform: modbus_controller
+  - platform: modbus_controller
     address: 113
     name: "State of Charge"
     unit_of_measurement: "%"
     register_type: holding
     id: soc
-- platform: modbus_controller
+
+  - platform: modbus_controller
     address: 114
     name: "State of Health"
     unit_of_measurement: "%"
