@@ -273,15 +273,19 @@ sensor:
 #    name: "Battery Ah"
 #    unit_of_measurement: "Ah"
 #    register_type: holding
-  - platform: template
+- platform: template
     id: hour_int
     update_interval: 10s
     internal: true
     lambda: |-
-        std::string hour_str = id(hour).state;      // беремо рядок з text_sensor
-        int hour_val = std::stoi(hour_str);         // конвертуємо в int
-        return hour_val;
-  - platform: modbus_controller
+        std::string hour_str = id(hour).state;       
+        // Перевіряємо, чи рядок не порожній і чи містить він лише цифри
+        if (hour_str.empty() || !std::all_of(hour_str.begin(), hour_str.end(), ::isdigit)) {
+          // Якщо дані ще не готові, повертаємо поточний стан (або 0 при першому старті)
+          return id(hour_int).has_state() ? id(hour_int).state : 0;
+        }
+        return std::stoi(hour_str);
+- platform: modbus_controller
     address: 113
     name: "State of Charge"
     unit_of_measurement: "%"
