@@ -35,18 +35,6 @@ modbus_controller:
     setup_priority: -10
     update_interval: never
 
-switch:
-  - platform: template
-    name: "Use customer limits for battery discharge"
-    id: limits_enabled
-    optimistic: True
-    restore_mode: RESTORE_DEFAULT_OFF
-  - platform: template
-    name: "Use night grid charge"
-    id: grid_charge_enabled
-    optimistic: True
-    restore_mode: RESTORE_DEFAULT_OFF
-
 binary_sensor:
   # CE: - Charger Errors from 15213 (id:charger_error_message))
   - platform: template
@@ -743,27 +731,6 @@ select:
       "BLU (Battery, Load, Utility)": 1        # select index 1
 
 number:
-  - platform: template
-    name: "Discharge margin"
-    id: discharge_margin
-    unit_of_measurement: "%"
-    min_value: 25
-    max_value: 85
-    initial_value: 66
-    step: 1
-    optimistic: true
-    restore_value: true
-  - platform: template
-    name: "Grid night charge margin"
-    id: grid_night_charge_margin
-    unit_of_measurement: "%"
-    min_value: 50
-    max_value: 95
-    initial_value: 75
-    step: 1
-    optimistic: true
-    restore_value: true
-
 #  - platform: template
 #    name: "INV Disable grid charge"
 #    id: inv_grid_chg_stop
