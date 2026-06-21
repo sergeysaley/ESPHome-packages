@@ -89,18 +89,6 @@ modbus_controller:
             red: 100%
             green: 0%
             blue: 0%
-       
-switch:
-  - platform: template
-    name: "Use customer limits for battery discharge"
-    id: limits_enabled
-    optimistic: True
-    restore_mode: RESTORE_DEFAULT_OFF
-  - platform: template
-    name: "Use night grid charge"
-    id: grid_charge_enabled
-    optimistic: True
-    restore_mode: RESTORE_DEFAULT_OFF
 
 binary_sensor:
   # CE: - Charger Errors from 15213 (id:charger_error_message))
@@ -319,77 +307,14 @@ binary_sensor:
   - platform: template
     name: "IW: PV charger communication error"
     lambda: uint16_t warning = id(inverter_error_message_1).state; return (warning & (1 << 10)) != 0;
-sensor:
-  - platform: template
-    id: minutes_now
-    update_interval: 10s
-    internal: true
-    unit_of_measurement: "min"
-    lambda: |-
-      auto now = id(homeassistant_time).now();
-      if (!now.is_valid()) {
-        return NAN; 
-      }
-      return (now.hour * 60) + now.minute;      
-#  - platform: modbus_controller
-#    address: 10111
-#    name: "Battery Ah"
-#    unit_of_measurement: "Ah"
-#    register_type: holding
 
+sensor:
   - platform: modbus_controller
     address: 113
     name: "State of Charge"
     unit_of_measurement: "%"
     register_type: holding
     id: soc
-    on_value:
-      then:
-        - if:
-            condition:
-              # if SoC < dm and regulation enabled -> SUB
-              lambda: |-
-                return (x < id(discharge_margin).state && id(limits_enabled).state);
-            then:
-              - select.set_index:
-                  id: energy_use_mode # UTI
-                  index: 2
-            else:
-              - if:
-                  condition:
-                  # if SoC > dm + 10 and regulation enabled and grid charge disabled -> SBU
-                    lambda: |-
-                      return (x > (id(discharge_margin).state + 10) && id(limits_enabled).state && !id(grid_charge_enabled).state);
-                  then:
-                    - select.set_index:
-                        id: energy_use_mode # SOL
-                        index: 3
-              - if:
-                  condition:
-                  # if SoC > grid_night_charge_number and regulation enabled and grid charge enabled -> SBU
-                    lambda: |-
-                      return (x > id(grid_night_charge_margin).state && id(limits_enabled).state && id(grid_charge_enabled).state);
-                  then:
-                    - select.set_index:
-                        id: energy_use_mode # SOL
-                        index: 3
-        - if:
-            condition:
-              lambda: |-
-                return ((id(minutes_now).state > 1380 || id(minutes_now).state < 420) && id(grid_charge_enabled).state);
-            then:
-              - select.set_index:
-                  id: charger_source_priority # SNU
-                  index: 1
-            else:
-              - if:
-                  condition:
-                    lambda: |
-                      return ((id(minutes_now).state > 420 && id(minutes_now).state < 1380) && id(grid_charge_enabled).state);
-                  then:
-                    - select.set_index:
-                        id: charger_source_priority # OSO
-                        index: 2
 
   - platform: modbus_controller
     address: 114
@@ -855,48 +780,6 @@ select:
       "BLU (Battery, Load, Utility)": 1        # select index 1
 
 number:
-  - platform: template
-    name: "Discharge margin"
-    id: discharge_margin
-    unit_of_measurement: "%"
-    min_value: 25
-    max_value: 85
-    initial_value: 66
-    step: 1
-    optimistic: true
-    restore_value: true
-  - platform: template
-    name: "Grid night charge margin"
-    id: grid_night_charge_margin
-    unit_of_measurement: "%"
-    min_value: 50
-    max_value: 95
-    initial_value: 75
-    step: 1
-    optimistic: true
-    restore_value: true
-    
-#  - platform: template
-#    name: "INV Disable grid charge"
-#    id: inv_grid_chg_stop
-#    unit_of_measurement: "%"
-#    min_value: 76
-#    max_value: 95
-#    initial_value: 90
-#    step: 1
-#    restore_value: true
-#    optimistic: true
-#    mode: box
-
-#  - platform: modbus_controller
-#    id: batt_float_voltage
-#    name: "Float voltage [18]"
-#    unit_of_measurement: "V"
-#    address: 10103
-#    value_type: U_WORD
-#    lambda: "return x * 0.1; "
-#    write_lambda: |-
-#      return x * 10 ;
 
   - platform: modbus_controller
     id: batt_ah
@@ -907,60 +790,9 @@ number:
     step: 1
     address: 10111
     value_type: U_WORD
-#    use_write_multiple: true
     lambda: "return x; "
     write_lambda: |-
       return x;
-
-#  - platform: modbus_controller
-#    id: batt_absorb_voltage
-#    name: "Absorb voltage"
-#    unit_of_measurement: "V"
-#    address: 10104
-#    value_type: U_WORD
-#    lambda: "return x * 0.1; "
-#    write_lambda: |-
-#      return x * 10 ;
-
-#  - platform: modbus_controller
-#    id: batt_stop_dischg
-#    name: "Battery stop discharging voltage"
-#    unit_of_measurement: "V"
-#    address: 20118
-#    value_type: U_WORD
-#    lambda: "return x * 0.1; "
-#    write_lambda: |-
-#      return x * 10 ;
-
-#  - platform: modbus_controller
-#    id: batt_stop_chg
-#    name: "Battery stop charging voltage"
-#    unit_of_measurement: "V"
-#    address: 20119
-#    value_type: U_WORD
-#    lambda: "return x * 0.1; "
-#    write_lambda: |-
-#      return x * 10 ;
-
-#  - platform: modbus_controller
-#    id: batt_low_voltage
-#    name: "Battery low voltage"
-#    unit_of_measurement: "V"
-#    address: 20127
-#    value_type: U_WORD
-#    lambda: "return x * 0.1; "
-#    write_lambda: |-
-#      return x * 10 ;
-
-#  - platform: modbus_controller
-#    id: batt_high_voltage
-#    name: "Battery high voltage"
-#    unit_of_measurement: "V"
-#    address: 20128
-#    value_type: U_WORD
-#    lambda: "return x * 0.1; "
-#    write_lambda: |-
-#      return x * 10 ;
 
   - platform: modbus_controller
     name: "Max Grid Charger current [13]"
@@ -969,7 +801,6 @@ number:
     min_value: 1
     max_value: 50
     value_type: U_WORD
-#    use_write_multiple: true
     lambda: "return x * 0.1; "
     write_lambda: |-
       return x * 10 ;
@@ -981,7 +812,6 @@ number:
     min_value: 10
     max_value: 120
     value_type: U_WORD
-#    use_write_multiple: true
     lambda: "return x * 0.1; "
     write_lambda: |-
       return x * 10 ;
