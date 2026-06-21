@@ -273,83 +273,13 @@ sensor:
 #    name: "Battery Ah"
 #    unit_of_measurement: "Ah"
 #    register_type: holding
-- platform: template
-    id: hour_int
-    update_interval: 10s
-    internal: true
-    lambda: |-
-        std::string hour_str = id(hour).state;       
-        // Перевіряємо, чи рядок не порожній і чи містить він лише цифри
-        if (hour_str.empty() || !std::all_of(hour_str.begin(), hour_str.end(), ::isdigit)) {
-          // Якщо дані ще не готові, повертаємо поточний стан (або 0 при першому старті)
-          return id(hour_int).has_state() ? id(hour_int).state : 0;
-        }
-        return std::stoi(hour_str);
 - platform: modbus_controller
     address: 113
     name: "State of Charge"
     unit_of_measurement: "%"
     register_type: holding
     id: soc
-    on_value:
-      then:
-        - if:
-            condition:
-              # if SoC < dm and regulation enabled -> SUB
-              lambda: |-
-                return (x < id(discharge_margin).state && id(limits_enabled).state);
-            then:
-              - select.set_index:
-                  id: energy_use_mode # SUB
-                  index: 1
-            else:
-              - if:
-                  condition:
-                  # if SoC > dm + 10 and regulation enabled and grid charge disabled -> SBU
-                    lambda: |-
-                      return (x > (id(discharge_margin).state + 10) && id(limits_enabled).state && !id(grid_charge_enabled).state);
-                  then:
-                    - select.set_index:
-                        id: energy_use_mode # SBU
-                        index: 0
-              - if:
-                  condition:
-                  # if SoC > grid_night_charge_number and regulation enabled and grid charge enabled -> SBU
-                    lambda: |-
-                      return (x > id(grid_night_charge_margin).state && id(limits_enabled).state && id(grid_charge_enabled).state);
-                  then:
-                    - select.set_index:
-                        id: energy_use_mode # SBU
-                        index: 0
-#                  else:
-#                    - if:
-#                        condition:
-#                        #  if regulation enabled
-#                          lambda: |-
-#                            return (id(limits_enabled).state);
-#                        then:
-#                          - select.set_index:
-#                              id: energy_use_mode # SUB
-#                              index: 1
-        - if:
-            condition:
-              lambda: |-
-                return ((id(hour_int).state >= 23 || id(hour_int).state < 7) && id(grid_charge_enabled).state);
-            then:
-              - select.set_index:
-                  id: charger_source_priority # SNU
-                  index: 1
-            else:
-              - if:
-                  condition:
-                    lambda: |-
-                      return (id(hour_int).state < 23 && id(hour_int).state >= 7 && id(grid_charge_enabled).state);
-                  then:
-                    - select.set_index:
-                        id: charger_source_priority # OSO
-                        index: 2
-
-  - platform: modbus_controller
+- platform: modbus_controller
     address: 114
     name: "State of Health"
     unit_of_measurement: "%"
