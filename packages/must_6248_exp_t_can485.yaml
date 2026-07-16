@@ -822,8 +822,8 @@ number:
     address: 20142
     value_type: U_WORD
 
-  - platform: modbus_controller
-    id: arrow_flags
-    name: "Arrrow Flags"
-    address: 25279
-    value_type: U_WORD
+#  - platform: modbus_controller
+#    id: arrow_flags
+#    name: "Arrrow Flags"
+#    address: 25279
+#    value_type: U_WORD
