@@ -72,13 +72,13 @@ uart:
 modbus:
   id: mod_bus_must
   uart_id: must_uart
-  send_wait_time: 30ms
+  send_wait_time: 250ms
+  turnaround_time: 20ms
 
 modbus_controller:
   - id: must
     address: 0x4
     modbus_id: mod_bus_must
-    response_timeout: 100ms
     setup_priority: -10
     update_interval: never
     on_command_sent:
