@@ -38,7 +38,8 @@ uart:
 modbus:
   id: modbus_gree
   uart_id: mod_bus
-  send_wait_time: 200ms
+  send_wait_time: 250ms
+  turnaround_time: 20ms
 
 modbus_controller:
   - id: gree
