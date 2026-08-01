@@ -92,16 +92,14 @@ sensor:
       unit_of_measurement: Wh
       filters:
         - filter_out: nan
-        - range:
-            max: 15000.0          
+        - max: 15000.0          
     power:
       name: "PZEM-004T V3 Power A"
       id: power_A
       unit_of_measurement: W
       filters:
         - filter_out: nan
-        - range:
-            max: 15000.0          
+        - max: 15000.0          
     frequency:
       name: "PZEM-004T V3 Frequency A"
     power_factor:
@@ -123,16 +121,14 @@ sensor:
       unit_of_measurement: Wh
       filters:
         - filter_out: nan
-        - range:
-            max: 15000.0          
+        - max: 15000.0          
     power:
       name: "PZEM-004T V3 Power B"
       id: power_B
       unit_of_measurement: W
       filters:
         - filter_out: nan
-        - range:
-            max: 15000.0          
+        - max: 15000.0          
     frequency:
       name: "PZEM-004T V3 Frequency B"
     power_factor:
@@ -154,16 +150,14 @@ sensor:
       unit_of_measurement: Wh
       filters:
         - filter_out: nan
-        - range:
-            max: 15000.0          
+        - max: 15000.0          
     power:
       name: "PZEM-004T V3 Power C"
       id: power_C
       unit_of_measurement: W
       filters:
         - filter_out: nan
-        - range:
-            max: 15000.0          
+        - max: 15000.0          
     frequency:
       name: "PZEM-004T V3 Frequency C"
     power_factor:
