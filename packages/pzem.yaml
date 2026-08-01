@@ -100,6 +100,27 @@ sensor:
       name: "PZEM-004T V3 Energy A"
       id: energy_A
       unit_of_measurement: Wh
+      filters:
+        - filter_out: nan
+        - lambda: |-
+            static float last_energy = -1.0;
+
+            // Якщо це перший запуск або відбувся скид (reset_energy) — приймаємо значення
+            if (last_energy < 0.0 || x < last_energy) {
+              last_energy = x;
+              return x;
+            }
+
+            // Перевіряємо приріст від попереднього валідного значення
+            float delta = x - last_energy;
+
+            // Якщо приріст більше 500 Wh за оновлення — відкидаємо це сміття
+            if (delta > 500.0) {
+              return {};
+            }
+
+            last_energy = x;
+            return x;    
     power:
       name: "PZEM-004T V3 Power A"
       id: power_A
@@ -143,6 +164,27 @@ sensor:
       name: "PZEM-004T V3 Energy B"
       id: energy_B
       unit_of_measurement: Wh
+      filters:
+        - filter_out: nan
+        - lambda: |-
+            static float last_energy = -1.0;
+
+            // Якщо це перший запуск або відбувся скид (reset_energy) — приймаємо значення
+            if (last_energy < 0.0 || x < last_energy) {
+              last_energy = x;
+              return x;
+            }
+
+            // Перевіряємо приріст від попереднього валідного значення
+            float delta = x - last_energy;
+
+            // Якщо приріст більше 500 Wh за оновлення — відкидаємо це сміття
+            if (delta > 500.0) {
+              return {};
+            }
+
+            last_energy = x;
+            return x;    
     power:
       name: "PZEM-004T V3 Power B"
       id: power_B
@@ -186,6 +228,27 @@ sensor:
       name: "PZEM-004T V3 Energy C"
       id: energy_C
       unit_of_measurement: Wh
+      filters:
+        - filter_out: nan
+        - lambda: |-
+            static float last_energy = -1.0;
+
+            // Якщо це перший запуск або відбувся скид (reset_energy) — приймаємо значення
+            if (last_energy < 0.0 || x < last_energy) {
+              last_energy = x;
+              return x;
+            }
+
+            // Перевіряємо приріст від попереднього валідного значення
+            float delta = x - last_energy;
+
+            // Якщо приріст більше 500 Wh за оновлення — відкидаємо це сміття
+            if (delta > 500.0) {
+              return {};
+            }
+
+            last_energy = x;
+            return x;    
     power:
       name: "PZEM-004T V3 Power C"
       id: power_C
