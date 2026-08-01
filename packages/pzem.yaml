@@ -90,11 +90,6 @@ sensor:
       name: "PZEM-004T V3 Energy A"
       id: energy_A
       unit_of_measurement: Wh
-      filters:
-        - filter_out: nan
-        - lambda: |-
-            if (x > 15000.0) return {};
-            return x;    
     power:
       name: "PZEM-004T V3 Power A"
       id: power_A
@@ -123,11 +118,6 @@ sensor:
       name: "PZEM-004T V3 Energy B"
       id: energy_B
       unit_of_measurement: Wh
-      filters:
-        - filter_out: nan
-        - lambda: |-
-            if (x > 15000.0) return {};
-            return x;    
     power:
       name: "PZEM-004T V3 Power B"
       id: power_B
@@ -156,11 +146,6 @@ sensor:
       name: "PZEM-004T V3 Energy C"
       id: energy_C
       unit_of_measurement: Wh
-      filters:
-        - filter_out: nan
-        - lambda: |-
-            if (x > 15000.0) return {};
-            return x;    
     power:
       name: "PZEM-004T V3 Power C"
       id: power_C
