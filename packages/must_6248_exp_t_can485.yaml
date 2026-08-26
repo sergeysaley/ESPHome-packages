@@ -824,7 +824,6 @@ number:
     value_type: U_WORD
   
   - platform: modbus_controller
-    modbus_controller_id: must_inverter # змініть на ID вашого modbus_controller
     name: "Grid Voltage Calibration Coefficient"
     address: 20011
     value_type: U_WORD
