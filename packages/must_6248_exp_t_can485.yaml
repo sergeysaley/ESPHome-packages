@@ -824,8 +824,9 @@ number:
     value_type: U_WORD
   
   - platform: modbus_controller
-    name: "Grid Voltage Calibration Coefficient"
+name: "Grid Voltage Calibration Coefficient"
     address: 20011
+    register_type: holding
     value_type: U_WORD
     entity_category: config
     min_value: 14000
