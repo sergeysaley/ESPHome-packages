@@ -843,6 +843,18 @@ number:
     min_value: 14000
     max_value: 18000
     step: 1
+
+  - platform: modbus_controller
+    name: "Battery Voltage Calibration Coefficient"
+    address: 20009
+    register_type: holding
+    value_type: U_WORD
+    entity_category: config
+    min_value: 14000
+    max_value: 18000
+    step: 1
+
+    
 #  - platform: modbus_controller
 #    id: arrow_flags
 #    name: "Arrrow Flags"
