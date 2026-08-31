@@ -5,7 +5,6 @@ esphome:
       - light.turn_on: 
           id: led
           brightness: 50%
-          effect: "Flicker Effect"
 
 binary_sensor:
   - platform: gpio
@@ -78,11 +77,6 @@ light:
     id: led
     name: "Bluelight"
     output: blue_led
-    effects:
-      - flicker:
-          name: "Flicker Effect"
-          alpha: 75%
-          intensity: 25%
      
 time:
   - platform: sntp
