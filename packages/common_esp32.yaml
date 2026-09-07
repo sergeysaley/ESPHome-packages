@@ -56,14 +56,17 @@ sensor:
     update_interval: 60s
     lambda: |-
       return (float) (esp_get_free_heap_size() / 1024.0);
+    entity_category: "diagnostic"
   - platform: uptime
     type: seconds
     name: Uptime Sensor
     id: uptime_sensor
     update_interval: 5s
+    entity_category: "diagnostic"
   - platform: internal_temperature
     name: "Core Temperature"
     update_interval: 15s
+    entity_category: "diagnostic"
 
 switch:
   - platform: restart
