@@ -21,9 +21,9 @@ wifi:
   ap:
     ssid: ${device_name}
     password: !secret ap_password
-  output_power: 13dBm
-  fast_connect: true
-  power_save_mode: none
+#  output_power: 13dBm
+#  fast_connect: true
+#  power_save_mode: none
 
 captive_portal:
 
