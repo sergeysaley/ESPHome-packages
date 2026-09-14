@@ -74,7 +74,7 @@ modbus:
   id: mod_bus_must
   uart_id: must_uart
   send_wait_time: 250ms
-  turnaround_time: 20ms
+  turnaround_time: 30ms
 
 modbus_controller:
   - id: must
@@ -458,16 +458,6 @@ sensor:
     device_class: power
     accuracy_decimals: 1
     icon: mdi:solar-power-variant-outline
-
-  - platform: modbus_controller
-    address: 15211
-    register_type: holding
-    name: "Battery Relay"
-  - platform: modbus_controller
-    address: 15212
-    register_type: holding
-    name: "PV Relay"
-    icon: mdi:electric-switch
 
   - platform: modbus_controller
     address: 15217
