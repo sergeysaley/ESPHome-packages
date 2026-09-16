@@ -83,7 +83,7 @@ modbus_controller:
     setup_priority: -10
 #    update_interval: never
     update_interval: 0s          # Увімкнення безперервного опитування (continuous polling)
-    command_throttle: 10ms       # Мінімальна пауза між запитами для стабільності лінії
+    command_throttle: 50ms       # Мінімальна пауза між запитами для стабільності лінії
     on_command_sent:
       then:
         - light.turn_on: 
