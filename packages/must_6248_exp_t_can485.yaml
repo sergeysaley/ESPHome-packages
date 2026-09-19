@@ -57,7 +57,7 @@ light:
 
 
 interval:
-  - interval: 5s
+  - interval: 7s
     then:
       - lambda: "id(must).update();"
 
