@@ -38,6 +38,7 @@ ota:
 web_server:
   port: 80
   version: 3
+  local: true
 
 text_sensor:
   - <<: !include ip_address.yaml
