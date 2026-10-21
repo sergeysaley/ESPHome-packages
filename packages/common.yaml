@@ -28,9 +28,13 @@ api:
   encryption:
     key: !secret api_key
 
+#ota:
+#  password: !secret ota_password
+#  platform: esphome
 ota:
-  password: !secret ota_password
-  platform: esphome
+  - platform: esphome
+    encryption:
+      key: !secret ota_encryption_key
 
 web_server:
   port: 80
