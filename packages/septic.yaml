@@ -30,6 +30,3 @@ sensor:
     range_status_sensor:
       id: range_status
       name: "Range Status"
-
-    range_status_sensor:
-      name: "Range Status"
