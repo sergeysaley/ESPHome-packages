@@ -13,14 +13,14 @@ sensor:
     id: distance
     name: Distance
     distance_mode: LONG
-    signal_threshold: 256
+    signal_threshold: 96
     timing_budget: 500ms
     update_interval: 10s
     accuracy_decimals: 3
     roi_center: 199
     roi_size:
-      x: 4
-      y: 4
+      x: 6
+      y: 6
     ambient_rate_sensor:
       name: "Ambient Rate [MCPS]"
     avg_signal_rate_sensor:
