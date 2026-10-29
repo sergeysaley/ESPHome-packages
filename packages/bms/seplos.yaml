@@ -26,113 +26,165 @@ text_sensor:
   - platform: seplos_bms_ble
     seplos_bms_ble_id: ${prefix}
     software_version:
+      id: ${prefix}_software_version
       name: "${prefix} software version"
     device_model:
+      id: ${prefix}_device_model
       name: "${prefix} device model"
     hardware_version:
+      id: ${prefix}_hardware_version
       name: "${prefix} hardware version"
     alarms:
+      id: ${prefix}_alarms
       name: "${prefix} alarms"
       
 sensor:
   - platform: seplos_bms_ble
     seplos_bms_ble_id: ${prefix}
     alarm_event1_bitmask:
+      id: ${prefix}_alarm_event1_bitmask
       name: "${prefix} alarm event 1 bitmask"
       on_value:
         then:
           - script.execute: ble_activity_blink
     alarm_event2_bitmask:
+      id: ${prefix}_alarm_event2_bitmask
       name: "${prefix} alarm event 2 bitmask"
     alarm_event3_bitmask:
+      id: ${prefix}_alarm_event3_bitmask
       name: "${prefix} alarm event 3 bitmask"
     alarm_event4_bitmask:
+      id: ${prefix}_alarm_event4_bitmask
       name: "${prefix} alarm event 4 bitmask"
     alarm_event5_bitmask:
+      id: ${prefix}_alarm_event5_bitmask
       name: "${prefix} alarm event 5 bitmask"
     alarm_event6_bitmask:
+      id: ${prefix}_alarm_event6_bitmask
       name: "${prefix} alarm event 6 bitmask"
     alarm_event7_bitmask:
+      id: ${prefix}_alarm_event7_bitmask
       name: "${prefix} alarm event 7 bitmask"
     alarm_event8_bitmask:
+      id: ${prefix}_alarm_event8_bitmask
       name: "${prefix} alarm event 8 bitmask"
     total_voltage:
+      id: ${prefix}_total_voltage
       name: "${prefix} total voltage"
     current:
+      id: ${prefix}_current
       name: "${prefix} current"
     charging_power:
+      id: ${prefix}_charging_power
       name: "${prefix} charging power"
     discharging_power:
+      id: ${prefix}_discharging_power
       name: "${prefix} discharging power"
     capacity_remaining:
+      id: ${prefix}_capacity_remaining
       name: "${prefix} capacity remaining"
     state_of_charge:
+      id: ${prefix}_state_of_charge
       name: "${prefix} state of charge"
     nominal_capacity:
+      id: ${prefix}_nominal_capacity
       name: "${prefix} nominal capacity"
     charging_cycles:
+      id: ${prefix}_charging_cycles
       name: "${prefix} charging cycles"
     min_cell_voltage:
+      id: ${prefix}_min_cell_voltage
       name: "${prefix} min cell voltage"
     max_cell_voltage:
+      id: ${prefix}_max_cell_voltage
       name: "${prefix} max cell voltage"
     min_voltage_cell:
+      id: ${prefix}_min_voltage_cell
       name: "${prefix} min voltage cell"
     max_voltage_cell:
+      id: ${prefix}_max_voltage_cell
       name: "${prefix} max voltage cell"
     delta_cell_voltage:
+      id: ${prefix}_delta_cell_voltage
       name: "${prefix} delta cell voltage"
     average_cell_voltage:
+      id: ${prefix}_average_cell_voltage
       name: "${prefix} average cell voltage"
     average_cell_temperature:
+      id: ${prefix}_average_cell_temperature
       name: "${prefix} average cell temperature"
     ambient_temperature:
+      id: ${prefix}_ambient_temperature
       name: "${prefix} ambient temperature"
     mosfet_temperature:
+      id: ${prefix}_mosfet_temperature
       name: "${prefix} mosfet temperature"
     state_of_health:
+      id: ${prefix}_state_of_health
       name: "${prefix} state of health"
     port_voltage:
+      id: ${prefix}_port_voltage
       name: "${prefix} port voltage"
     battery_capacity:
+      id: ${prefix}_battery_capacity
       name: "${prefix} battery capacity"
     temperature_1:
+      id: ${prefix}_temperature_1
       name: "${prefix} temperature 1"
     temperature_2:
+      id: ${prefix}_temperature_2
       name: "${prefix} temperature 2"
     temperature_3:
+      id: ${prefix}_temperature_3
       name: "${prefix} temperature 3"
     temperature_4:
+      id: ${prefix}_temperature_4
       name: "${prefix} temperature 4"
     cell_voltage_1:
+      id: ${prefix}_cell_voltage_1
       name: "${prefix} cell voltage 1"
     cell_voltage_2:
+      id: ${prefix}_cell_voltage_2
       name: "${prefix} cell voltage 2"
     cell_voltage_3:
+      id: ${prefix}_cell_voltage_3
       name: "${prefix} cell voltage 3"
     cell_voltage_4:
+      id: ${prefix}_cell_voltage_4
       name: "${prefix} cell voltage 4"
     cell_voltage_5:
+      id: ${prefix}_cell_voltage_5
       name: "${prefix} cell voltage 5"
     cell_voltage_6:
+      id: ${prefix}_cell_voltage_6
       name: "${prefix} cell voltage 6"
     cell_voltage_7:
+      id: ${prefix}_cell_voltage_7
       name: "${prefix} cell voltage 7"
     cell_voltage_8:
+      id: ${prefix}_cell_voltage_8
       name: "${prefix} cell voltage 8"
     cell_voltage_9:
+      id: ${prefix}_cell_voltage_9
       name: "${prefix} cell voltage 9"
     cell_voltage_10:
+      id: ${prefix}_cell_voltage_10
       name: "${prefix} cell voltage 10"
     cell_voltage_11:
+      id: ${prefix}_cell_voltage_11
       name: "${prefix} cell voltage 11"
     cell_voltage_12:
+      id: ${prefix}_cell_voltage_12
       name: "${prefix} cell voltage 12"
     cell_voltage_13:
+      id: ${prefix}_cell_voltage_13
       name: "${prefix} cell voltage 13"
     cell_voltage_14:
+      id: ${prefix}_cell_voltage_14
       name: "${prefix} cell voltage 14"
     cell_voltage_15:
+      id: ${prefix}_cell_voltage_15
       name: "${prefix} cell voltage 15"
     cell_voltage_16:
+      id: ${prefix}_cell_voltage_16
       name: "${prefix} cell voltage 16"
