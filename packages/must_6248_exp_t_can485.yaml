@@ -222,6 +222,7 @@ sensor:
     name: "PV1 Charger power"
     unit_of_measurement: "W"
     device_class: power
+    state_class: measurement
     accuracy_decimals: 1
     icon: mdi:solar-power-variant-outline
 
@@ -231,6 +232,7 @@ sensor:
     name: "PV2 Charger power"
     unit_of_measurement: "W"
     device_class: power
+    state_class: measurement
     accuracy_decimals: 1
     icon: mdi:solar-power-variant-outline
 
