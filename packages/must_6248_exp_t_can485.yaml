@@ -96,6 +96,8 @@ sensor:
   - platform: modbus_controller
     address: 113
     name: "State of Charge"
+    device_class: battery
+    state_class: measurement
     unit_of_measurement: "%"
     register_type: holding
     id: soc
