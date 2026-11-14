@@ -47,144 +47,236 @@ sensor:
       on_value:
         then:
           - script.execute: ble_activity_blink
+      entity_category: diagnostic
+      icon: mdi:alert-circle-outline
     alarm_event2_bitmask:
       id: ${prefix}_alarm_event2_bitmask
       name: "${prefix} alarm event 2 bitmask"
+      entity_category: diagnostic
+      icon: mdi:alert-circle-outline
     alarm_event3_bitmask:
       id: ${prefix}_alarm_event3_bitmask
       name: "${prefix} alarm event 3 bitmask"
+      entity_category: diagnostic
+      icon: mdi:alert-circle-outline
     alarm_event4_bitmask:
       id: ${prefix}_alarm_event4_bitmask
       name: "${prefix} alarm event 4 bitmask"
+      entity_category: diagnostic
+      icon: mdi:alert-circle-outline
     alarm_event5_bitmask:
       id: ${prefix}_alarm_event5_bitmask
       name: "${prefix} alarm event 5 bitmask"
+      entity_category: diagnostic
+      icon: mdi:alert-circle-outline
     alarm_event6_bitmask:
       id: ${prefix}_alarm_event6_bitmask
       name: "${prefix} alarm event 6 bitmask"
+      entity_category: diagnostic
+      icon: mdi:alert-circle-outline
     alarm_event7_bitmask:
       id: ${prefix}_alarm_event7_bitmask
       name: "${prefix} alarm event 7 bitmask"
+      entity_category: diagnostic
+      icon: mdi:alert-circle-outline
     alarm_event8_bitmask:
       id: ${prefix}_alarm_event8_bitmask
       name: "${prefix} alarm event 8 bitmask"
+      entity_category: diagnostic
+      icon: mdi:alert-circle-outline
     total_voltage:
       id: ${prefix}_total_voltage
       name: "${prefix} total voltage"
+      device_class: voltage
+      state_class: measurement
     current:
       id: ${prefix}_current
       name: "${prefix} current"
+      device_class: current
+      state_class: measurement
     charging_power:
       id: ${prefix}_charging_power
       name: "${prefix} charging power"
+      device_class: power
+      state_class: measurement
     discharging_power:
       id: ${prefix}_discharging_power
       name: "${prefix} discharging power"
+      device_class: power
+      state_class: measurement
     capacity_remaining:
       id: ${prefix}_capacity_remaining
       name: "${prefix} capacity remaining"
+      state_class: measurement
     state_of_charge:
       id: ${prefix}_state_of_charge
       name: "${prefix} state of charge"
+      device_class: battery
+      state_class: measurement
     nominal_capacity:
       id: ${prefix}_nominal_capacity
       name: "${prefix} nominal capacity"
+      entity_category: diagnostic
     charging_cycles:
       id: ${prefix}_charging_cycles
       name: "${prefix} charging cycles"
+      state_class: total_increasing
+      entity_category: diagnostic
     min_cell_voltage:
       id: ${prefix}_min_cell_voltage
       name: "${prefix} min cell voltage"
+      device_class: voltage
+      state_class: measurement
     max_cell_voltage:
       id: ${prefix}_max_cell_voltage
       name: "${prefix} max cell voltage"
+      device_class: voltage
+      state_class: measurement
     min_voltage_cell:
       id: ${prefix}_min_voltage_cell
       name: "${prefix} min voltage cell"
+      entity_category: diagnostic
     max_voltage_cell:
       id: ${prefix}_max_voltage_cell
       name: "${prefix} max voltage cell"
+      entity_category: diagnostic
     delta_cell_voltage:
       id: ${prefix}_delta_cell_voltage
       name: "${prefix} delta cell voltage"
+      device_class: voltage
+      state_class: measurement
     average_cell_voltage:
       id: ${prefix}_average_cell_voltage
       name: "${prefix} average cell voltage"
+      device_class: voltage
+      state_class: measurement
     average_cell_temperature:
       id: ${prefix}_average_cell_temperature
       name: "${prefix} average cell temperature"
+      device_class: temperature
+      state_class: measurement
     ambient_temperature:
       id: ${prefix}_ambient_temperature
       name: "${prefix} ambient temperature"
+      device_class: temperature
+      state_class: measurement
     mosfet_temperature:
       id: ${prefix}_mosfet_temperature
       name: "${prefix} mosfet temperature"
+      device_class: temperature
+      state_class: measurement
+      entity_category: diagnostic
     state_of_health:
       id: ${prefix}_state_of_health
       name: "${prefix} state of health"
+      state_class: measurement
+      entity_category: diagnostic
     port_voltage:
       id: ${prefix}_port_voltage
       name: "${prefix} port voltage"
+      device_class: voltage
+      state_class: measurement
     battery_capacity:
       id: ${prefix}_battery_capacity
       name: "${prefix} battery capacity"
+      entity_category: diagnostic
     temperature_1:
       id: ${prefix}_temperature_1
       name: "${prefix} temperature 1"
+      device_class: temperature
+      state_class: measurement
     temperature_2:
       id: ${prefix}_temperature_2
       name: "${prefix} temperature 2"
+      device_class: temperature
+      state_class: measurement
     temperature_3:
       id: ${prefix}_temperature_3
       name: "${prefix} temperature 3"
+      device_class: temperature
+      state_class: measurement
     temperature_4:
       id: ${prefix}_temperature_4
       name: "${prefix} temperature 4"
+      device_class: temperature
+      state_class: measurement
     cell_voltage_1:
       id: ${prefix}_cell_voltage_1
       name: "${prefix} cell voltage 1"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_2:
       id: ${prefix}_cell_voltage_2
       name: "${prefix} cell voltage 2"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_3:
       id: ${prefix}_cell_voltage_3
       name: "${prefix} cell voltage 3"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_4:
       id: ${prefix}_cell_voltage_4
       name: "${prefix} cell voltage 4"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_5:
       id: ${prefix}_cell_voltage_5
       name: "${prefix} cell voltage 5"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_6:
       id: ${prefix}_cell_voltage_6
       name: "${prefix} cell voltage 6"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_7:
       id: ${prefix}_cell_voltage_7
       name: "${prefix} cell voltage 7"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_8:
       id: ${prefix}_cell_voltage_8
       name: "${prefix} cell voltage 8"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_9:
       id: ${prefix}_cell_voltage_9
       name: "${prefix} cell voltage 9"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_10:
       id: ${prefix}_cell_voltage_10
       name: "${prefix} cell voltage 10"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_11:
       id: ${prefix}_cell_voltage_11
       name: "${prefix} cell voltage 11"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_12:
       id: ${prefix}_cell_voltage_12
       name: "${prefix} cell voltage 12"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_13:
       id: ${prefix}_cell_voltage_13
       name: "${prefix} cell voltage 13"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_14:
       id: ${prefix}_cell_voltage_14
       name: "${prefix} cell voltage 14"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_15:
       id: ${prefix}_cell_voltage_15
       name: "${prefix} cell voltage 15"
+      device_class: voltage
+      state_class: measurement
     cell_voltage_16:
       id: ${prefix}_cell_voltage_16
       name: "${prefix} cell voltage 16"
+      device_class: voltage
+      state_class: measurement
