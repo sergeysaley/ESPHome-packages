@@ -40,7 +40,7 @@ sensor:
       name: "PZEM-004T V3 Power Washing machine 1"
       unit_of_measurement: W
     energy:
-      name: "PZEM-004T V3 Energy Washinng machine 1"
+      name: "PZEM-004T V3 Energy Washing machine 1"
       unit_of_measurement: Wh
     update_interval: never
   - platform: pzemac
